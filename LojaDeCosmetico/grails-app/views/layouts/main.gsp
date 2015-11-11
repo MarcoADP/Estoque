@@ -14,6 +14,8 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
+                <r:require modules="bootstrap"/>
+                <r:layoutResources/>
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -21,5 +23,6 @@
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+                <r:layoutResources/>
 	</body>
 </html>
