@@ -20,10 +20,10 @@
                             <div class='alert alert-success'>${flash.message}</div>
                         </g:if>
 
-                        <form class="testando" action='${postUrl}' method='POST' autocomplete='off'>
+                        <form class="testando" action='${postUrl}' method='POST' autocomplete='on'>
                             <fieldset>
                                 <div class="form-group has-feedback">
-                                    <input type='text' class='form-control' name='j_username' id='username' placeholder="${message(code: 'springSecurity.login.username.label')}"/>
+                                    <input type='text' class='form-control' name='j_username' id='username' placeholder="${message(code: 'springSecurity.login.username.label')}" autofocus/>
                                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 </div>
                             
