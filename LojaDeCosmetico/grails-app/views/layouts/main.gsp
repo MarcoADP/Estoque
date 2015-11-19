@@ -279,6 +279,7 @@
         <div class="page-body">
             <div class="row main">
                 <g:layoutBody/>
+                <%/*
                 <h1 class="page-header">Dashboard</h1>
 
                 <div class="row placeholders">
@@ -466,7 +467,7 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                </div>*/%>
             </div>
         </div>
 </div>
