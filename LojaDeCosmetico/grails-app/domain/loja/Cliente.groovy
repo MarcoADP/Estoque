@@ -18,4 +18,8 @@ class Cliente {
         idade();
         dataCadastro();
     }
+
+    String toString(){
+        return nome;
+    }
 }

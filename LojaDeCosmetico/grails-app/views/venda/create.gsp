@@ -25,12 +25,12 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:vendaInstance, action:'save']" >
-				<fieldset class="form">
+			<g:form url="[resource:vendaInstance, action:'save']" class="form-horizontal">
+
 					<g:render template="form"/>
-				</fieldset>
+
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create2')}" />
 				</fieldset>
 			</g:form>
 		</div>
