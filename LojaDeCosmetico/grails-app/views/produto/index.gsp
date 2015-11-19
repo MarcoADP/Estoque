@@ -54,9 +54,9 @@
 					
 						<td>${fieldValue(bean: produtoInstance, field: "quantidade")}</td>
 					
-						<td><g:formatDate date="${produtoInstance.dataFabricacao}" /></td>
+						<td><g:formatDate formatName="produto.dateformat" date="${produtoInstance.dataFabricacao}" /></td>
 					
-						<td><g:formatDate date="${produtoInstance.dataVencimento}" /></td>
+						<td><g:formatDate formatName="produto.dateformat" date="${produtoInstance.dataVencimento}" /></td>
 					
 					</tr>
 				</g:each>
