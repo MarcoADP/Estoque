@@ -264,12 +264,13 @@
             </div>
             <ul class="nav nav-sidebar">
                 <li class="${controllerName == null ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-tag"></span>Vendas</a></li>
-                <li ${controllerName == 'compras' ? 'active' : ''}><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
-                <li ${controllerName == 'estoque' ? 'active' : ''}><a href="#"><span class="glyphicon glyphicon-list-alt"></span>Estoque</a></li>
-                <li ${controllerName == 'usuarios' ? 'active' : ''}><a href="#"><span class="glyphicon glyphicon-user"></span>Usuários</a></li>
-                <li ${controllerName == 'devolverProduto' ? 'active' : ''}><a href=""><span class="glyphicon glyphicon-new-window"></span>Devolver produto</a></li>
-                <li ${controllerName == 'retornarCompra' ? 'active' : ''}><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>
-                <li ${controllerName == 'pagamentos' ? 'active' : ''}><a href=""><span class="glyphicon glyphicon-credit-card"></span>Pagamentos</a></li>
+                <li class="${controllerName == 'compras' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
+                <li class="${controllerName == 'estoque' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-list-alt"></span>Estoque</a></li>
+                <li class="${controllerName == 'cliente' ? 'active' : ''}"><g:link controller="cliente"><span class="glyphicon glyphicon-user"></span>Cliente</g:link></li>
+                <li class="${controllerName == 'usuarios' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-user"></span>Usuários</a></li>
+                <li class="${controllerName == 'devolverProduto' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Devolver produto</a></li>
+                <li class="${controllerName == 'retornarCompra' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>
+                <li class="${controllerName == 'pagamentos' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-credit-card"></span>Pagamentos</a></li>
             </ul>
             <ul class="nav nav-sidebar nav-bottom">
                 <li><a href="${createLink(uri: '/logout')}"><span class="glyphicon glyphicon-log-out"></span><g:message code="springSecurity.logout.name"/></a></li>
