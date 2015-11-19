@@ -265,7 +265,7 @@
             <ul class="nav nav-sidebar">
                 <li class="${controllerName == null ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-tag"></span>Vendas</a></li>
                 <li class="${controllerName == 'compras' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
-                <li class="${controllerName == 'estoque' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-list-alt"></span>Estoque</a></li>
+                <li class="${controllerName == 'produto' ? 'active' : ''}"><g:link controller="produto"><span class="glyphicon glyphicon-list-alt"></span>Estoque</g:link></li>
                 <li class="${controllerName == 'cliente' ? 'active' : ''}"><g:link controller="cliente"><span class="glyphicon glyphicon-user"></span>Cliente</g:link></li>
                 <li class="${controllerName == 'usuarios' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-user"></span>Usuários</a></li>
                 <li class="${controllerName == 'devolverProduto' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Devolver produto</a></li>
