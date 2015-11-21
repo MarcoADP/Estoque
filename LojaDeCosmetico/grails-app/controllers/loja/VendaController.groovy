@@ -10,7 +10,7 @@ class VendaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: Venda.count(), 100)
         respond Venda.list(params), model: [vendaInstanceCount: Venda.count()]
     }
 

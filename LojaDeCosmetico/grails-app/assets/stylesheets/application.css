@@ -10,7 +10,7 @@
 * require main
 *= require bootstrap
 *= require bootstrap-theme
-*= require mobile
+* require mobile
 *= require_self
 */
 
@@ -156,7 +156,6 @@
 
 .main {
     padding: 20px;
-    padding-top: 60px;
 }
 
 @media (min-width: 768px) {
@@ -169,4 +168,16 @@
 .main .page-header {
     margin-top: 0;
 }
+
+.titulo-crud {
+    font-weight: bold;
+    padding-bottom: 15px;"
+}
+
+.titulo-main {
+    font-weight: bold;
+    font-size: 72px;
+}
+
+
 
