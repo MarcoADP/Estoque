@@ -19,4 +19,8 @@ class Produto {
         }
         dataVencimento blank: false
     }
+
+    String toString(){
+        return nome;
+    }
 }

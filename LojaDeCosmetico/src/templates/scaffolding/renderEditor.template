@@ -34,6 +34,7 @@
     private renderEnumEditor(domainClass, property) {
 		def sb = new StringBuilder("")
         sb << '<g:select name="' << property.name << '"'
+        sb << ' class="form-control"'
  		sb << ' from="${' << "${property.type.name}?.values()" << '}"'
  		sb << ' keys="${' << property.type.name << '.values()*.name()}"'
 		if (isRequired()) sb << ' required=""'
@@ -53,6 +54,7 @@
 			def sb = new StringBuilder("")
             if ("textarea" == cp.widget || (cp.maxSize > 250 && !cp.password && !cp.inList)) {
                 sb << '<g:textArea name="' << property.name << '"'
+                sb << ' class="form-control"'
  				sb << ' cols="40" rows="5"'
 				if (cp.maxSize) sb << ' maxlength="' << cp.maxSize << '"'
 				if (isRequired()) sb << ' required=""'
@@ -60,6 +62,7 @@
 				sb << '/>'
             } else if (cp.inList) {
 				sb << '<g:select name="' << property.name << '"'
+				sb << ' class="form-control"'
 				sb << ' from="${' << "${domainInstance}.constraints.${property.name}.inList" << '}"'
 				if (isRequired()) sb << ' required=""'
 				sb << ' value="${' << "${domainInstance}?.${property.name}" << '}"'
@@ -77,6 +80,7 @@
 					sb << '<g:textField'
 				}
 				sb << ' name="' << property.name << '"'
+				sb << ' class="form-control"'
 				if (cp.maxSize) sb << ' maxlength="' << cp.maxSize << '"'
 				if (!cp.editable) sb << ' readonly="readonly"'
 				if (cp.matches) sb << ' pattern="${' << "${domainInstance}.constraints.${property.name}.matches" << '}"'
@@ -89,7 +93,7 @@
     }
 
     private renderByteArrayEditor(domainClass, property) {
-        return "<input type=\"file\" id=\"${property.name}\" name=\"${property.name}\" />"
+        return "<input class=\"form-control\" type=\"file\" id=\"${property.name}\" name=\"${property.name}\" />"
     }
 
     private renderManyToOne(domainClass,property) {
@@ -99,11 +103,11 @@
 			// id is "x" and name is "x.id" as the label will have for="x" and "." in an id will confuse CSS
  			sb << ' id="' << property.name << '"'
  			sb << ' name="' << property.name << '.id"'
+ 			sb << ' class="form-control"'
  			sb << ' from="${' << property.type.name << '.list()}"'
  			sb << ' optionKey="id"'
 			if (isRequired()) sb << ' required=""'
  			sb << ' value="${' << "${domainInstance}?.${property.name}" << '?.id}"'
- 			sb << ' class="many-to-one"'
  			sb << renderNoSelection(property)
  			sb << '/>'
 			sb as String
@@ -121,13 +125,13 @@
         if (cls != null) {
             def sb = new StringBuilder()
             sb << '<g:select name="' << property.name << '"'
+            sb << ' class="form-control"'
             sb << ' from="${' << cls.name << '.list()}"'
             sb << ' multiple="multiple"'
             sb << ' optionKey="id"'
             sb << ' size="5"'
             if (isRequired()) sb << ' required=""'
             sb << ' value="${' << "${domainInstance}?.${property.name}" << '*.id}"'
-            sb << ' class="many-to-many"'
             sb << '/>'
             sb as String
 
@@ -161,14 +165,15 @@
 	        def sb = new StringBuilder()
             if (cp.range) {
                 sb << '<g:select name="' << property.name << '"'
+                sb << ' class="form-control"'
  				sb << ' from="${' << "${cp.range.from}..${cp.range.to}" << '}"'
- 				sb << ' class="range"'
 				if (isRequired()) sb << ' required=""'
 				sb << ' value="${' << "fieldValue(bean: ${domainInstance}, field: '${property.name}')" << '}"'
 				sb << renderNoSelection(property)
 				sb << '/>'
             } else if (cp.inList) {
                 sb << '<g:select name="' << property.name << '"'
+                sb << ' class="form-control"'
  				sb << ' from="${' << "${domainInstance}.constraints.${property.name}.inList" << '}"'
 				if (isRequired()) sb << ' required=""'
 				sb << ' value="${' << "fieldValue(bean: ${domainInstance}, field: '${property.name}')" << '}"'
@@ -178,6 +183,7 @@
             } else {
 				sb << '<g:field'
 				sb << ' name="' << property.name << '"'
+				sb << ' class="form-control"'
 				if (property.type in [float, double, Float, Double, BigDecimal]) {
 					sb << ' value="${' << "fieldValue(bean: ${domainInstance}, field: '${property.name}')" << '}"'
 				} else {
@@ -233,9 +239,9 @@
 
     private renderSelectTypeEditor(type, domainClass,property) {
         if (!cp) {
-            return "<g:${type}Select name=\"${property.name}\" value=\"\${${domainInstance}?.${property.name}}\" />"
+            return "<g:${type}Select class=\"form-control\" name=\"${property.name}\" value=\"\${${domainInstance}?.${property.name}}\" />"
         } else {
-            def sb = new StringBuilder("<g:${type}Select name=\"${property.name}\" ")
+            def sb = new StringBuilder("<g:${type}Select class=\"form-control\" name=\"${property.name}\" ")
             if (cp.widget) sb << "widget=\"${cp.widget}\" ";
             cp.attributes.each { k, v ->
                 sb << "${k}=\"${v}\" "

@@ -7,15 +7,15 @@ class Venda {
     Cliente cliente;
     //static hasOne = [cliente: Cliente];
     //static hasOne = [pagamento: Pagamento];
-    //static hasMany = [produto: Produto]
+    static hasMany = [produto: Produto]
     String status;
     Double precoTotal;
 
     static constraints = {
         codVenda();
-        //listaProduto();
-        precoTotal();
         cliente();
+        produto();
+        precoTotal();
         status();
         dataVenda();
     }

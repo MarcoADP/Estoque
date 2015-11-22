@@ -1,4 +1,5 @@
 
+
 <%@ page import="loja.Cliente" %>
 <!DOCTYPE html>
 <html>
@@ -6,41 +7,74 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<asset:javascript src="datatables.min.js"/>
+		<asset:stylesheet src="datatables.min.css"/>
+		<g:javascript>
+			$(document).ready(function() {
+				$('#data-table').DataTable({
+					"language": {
+						"sEmptyTable": "Nenhum registro encontrado",
+						"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+						"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+						"sInfoFiltered": "(Filtrados de _MAX_ registros)",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ resultados por página",
+						"sLoadingRecords": "Carregando...",
+						"sProcessing": "Processando...",
+						"sZeroRecords": "Nenhum registro encontrado",
+						"sSearch": "Pesquisar",
+						"oPaginate": {
+							"sNext": "Próximo",
+							"sPrevious": "Anterior",
+							"sFirst": "Primeiro",
+							"sLast": "Último"
+						},
+						"oAria": {
+							"sSortAscending": ": Ordenar colunas de forma ascendente",
+							"sSortDescending": ": Ordenar colunas de forma descendente"
+						}
+					}
+
+
+				} );
+			} );
+		</g:javascript>
 	</head>
 	<body>
-		<a href="#list-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+		%{--<a href="#list-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		<div class="page-header" role="navigation">
+			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="list-cliente" class="table-responsive" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+
+		<div id="list-cliente" role="main">
+			<h1 class="titulo-crud"><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
-			<table class="table table-striped table-bordered">
-			<thead>
+
+			<table id="data-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
 					<tr>
 					
-						<g:sortableColumn property="nome" title="${message(code: 'cliente.nome.label', default: 'Nome')}" />
+						<th><g:message code="cliente.nome.label" default="Nome" /></th>
 					
-						<g:sortableColumn property="endereco" title="${message(code: 'cliente.endereco.label', default: 'Endereco')}" />
+						<th><g:message code="cliente.endereco.label" default="Endereco" /></th>
 					
-						<g:sortableColumn property="telefone" title="${message(code: 'cliente.telefone.label', default: 'Telefone')}" />
+						<th><g:message code="cliente.telefone.label" default="Telefone" /></th>
 					
-						<g:sortableColumn property="dataNascimento" title="${message(code: 'cliente.dataNascimento.label', default: 'Data Nascimento')}" />
+						<th><g:message code="cliente.dataNascimento.label" default="Data Nascimento" /></th>
 					
-						<g:sortableColumn property="idade" title="${message(code: 'cliente.idade.label', default: 'Idade')}" />
+						<th><g:message code="cliente.idade.label" default="Idade" /></th>
 					
-						<g:sortableColumn property="dataCadastro" title="${message(code: 'cliente.dataCadastro.label', default: 'Data Cadastro')}" />
+						<th><g:message code="cliente.dataCadastro.label" default="Data Cadastro" /></th>
 					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${clienteInstanceList}" status="i" var="clienteInstance">
-					<tr>
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
 					

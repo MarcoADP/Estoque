@@ -11,7 +11,7 @@ class ProdutoController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: Produto.count(), 100)
         respond Produto.list(params), model:[produtoInstanceCount: Produto.count()]
     }
 

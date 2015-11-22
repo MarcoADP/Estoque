@@ -1,108 +1,102 @@
+
 <%@ page import="loja.Cliente" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="layout" content="main">
-    <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}"/>
-    <title><g:message code="default.show.label" args="[entityName]"/></title>
-</head>
-
-<body>
-<a href="#show-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                              default="Skip to content&hellip;"/></a>
-
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>
-        <li><g:link class="create" action="create"><g:message code="default.new.label"
-                                                              args="[entityName]"/></g:link></li>
-    </ul>
-</div>
-
-<div id="show-cliente" class="content scaffold-show" role="main">
-    <h1><g:message code="default.show.label" args="[entityName]"/></h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
-    <ol class="property-list cliente">
-
-        <g:if test="${clienteInstance?.nome}">
-            <li class="fieldcontain">
-                <span id="nome-label" class="property-label"><g:message code="cliente.nome.label"
-                                                                        default="Nome"/></span>
-
-                <span class="property-value" aria-labelledby="nome-label"><g:fieldValue bean="${clienteInstance}"
-                                                                                        field="nome"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${clienteInstance?.endereco}">
-            <li class="fieldcontain">
-                <span id="endereco-label" class="property-label"><g:message code="cliente.endereco.label"
-                                                                            default="Endereco"/></span>
-
-                <span class="property-value" aria-labelledby="endereco-label"><g:fieldValue bean="${clienteInstance}"
-                                                                                            field="endereco"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${clienteInstance?.telefone}">
-            <li class="fieldcontain">
-                <span id="telefone-label" class="property-label"><g:message code="cliente.telefone.label"
-                                                                            default="Telefone"/></span>
-
-                <span class="property-value" aria-labelledby="telefone-label"><g:fieldValue bean="${clienteInstance}"
-                                                                                            field="telefone"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${clienteInstance?.dataNascimento}">
-            <li class="fieldcontain">
-                <span id="dataNascimento-label" class="property-label"><g:message code="cliente.dataNascimento.label"
-                                                                                  default="Data Nascimento"/></span>
-
-                <span class="property-value" aria-labelledby="dataNascimento-label"><g:formatDate
-                        date="${clienteInstance?.dataNascimento}"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${clienteInstance?.idade}">
-            <li class="fieldcontain">
-                <span id="idade-label" class="property-label"><g:message code="cliente.idade.label"
-                                                                         default="Idade"/></span>
-
-                <span class="property-value" aria-labelledby="idade-label"><g:fieldValue bean="${clienteInstance}"
-                                                                                         field="idade"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${clienteInstance?.dataCadastro}">
-            <li class="fieldcontain">
-                <span id="dataCadastro-label" class="property-label"><g:message code="cliente.dataCadastro.label"
-                                                                                default="Data Cadastro"/></span>
-
-                <span class="property-value" aria-labelledby="dataCadastro-label"><g:formatDate
-                        date="${clienteInstance?.dataCadastro}"/></span>
-
-            </li>
-        </g:if>
-
-    </ol>
-    <g:form url="[resource: clienteInstance, action: 'delete']" method="DELETE">
-        <fieldset class="buttons">
-            <g:link class="edit" action="edit" resource="${clienteInstance}"><g:message code="default.button.edit.label"
-                                                                                        default="Edit"/></g:link>
-            <g:actionSubmit class="delete" action="delete"
-                            value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-        </fieldset>
-    </g:form>
-</div>
-</body>
+	<head>
+		<meta name="layout" content="main">
+		<meta charset="UTF-8">
+		<g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" />
+		<title><g:message code="default.show.label" args="[entityName]" /></title>
+	</head>
+	<body>
+		%{--<a href="#show-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		<div class="page-header" role="navigation">
+			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+			<g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+		</div>
+		<div id="show-cliente" role="main">
+			<h1 class="titulo-crud"><g:message code="default.show.label" args="[entityName]" /></h1>
+			<g:if test="${flash.message}">
+				<div class="alert alert-success" role="status">${flash.message}</div>
+			</g:if>
+			<form class="form-horizontal">
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="nome-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.nome.label" default="Nome" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="nome-label"><g:fieldValue bean="${clienteInstance}" field="nome"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="endereco-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.endereco.label" default="Endereco" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="endereco-label"><g:fieldValue bean="${clienteInstance}" field="endereco"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="telefone-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.telefone.label" default="Telefone" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="telefone-label"><g:fieldValue bean="${clienteInstance}" field="telefone"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="dataNascimento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.dataNascimento.label" default="Data Nascimento" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="dataNascimento-label"><g:formatDate date="${clienteInstance?.dataNascimento}" /></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="idade-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.idade.label" default="Idade" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="idade-label"><g:fieldValue bean="${clienteInstance}" field="idade"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
+					<label id="dataCadastro-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.dataCadastro.label" default="Data Cadastro" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="dataCadastro-label"><g:formatDate date="${clienteInstance?.dataCadastro}" /></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+			</form>
+			<hr>
+			<g:form url="[resource:clienteInstance, action:'delete']" method="DELETE">
+				<fieldset class="buttons">
+					<g:link class="btn btn-primary" action="edit" resource="${clienteInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<a href="#DeleteModal" class="btn btn-danger" data-toggle="modal"><g:message code="default.button.delete.label" default="Delete" /></a>
+				</fieldset>
+			</g:form>
+		</div>
+	<g:render template="/layouts/deleteModal" model="[item: item]"/>
+	</body>
 </html>

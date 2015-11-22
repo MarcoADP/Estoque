@@ -7,38 +7,68 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'produto.label', default: 'Produto')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<asset:javascript src="datatables.min.js"/>
+		<asset:stylesheet src="datatables.min.css"/>
+		<g:javascript>
+			$(document).ready(function() {
+				$('#data-table').DataTable({
+					"language": {
+						"sEmptyTable": "Nenhum registro encontrado",
+						"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+						"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+						"sInfoFiltered": "(Filtrados de _MAX_ registros)",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ resultados por página",
+						"sLoadingRecords": "Carregando...",
+						"sProcessing": "Processando...",
+						"sZeroRecords": "Nenhum registro encontrado",
+						"sSearch": "Pesquisar",
+						"oPaginate": {
+							"sNext": "Próximo",
+							"sPrevious": "Anterior",
+							"sFirst": "Primeiro",
+							"sLast": "Último"
+						},
+						"oAria": {
+							"sSortAscending": ": Ordenar colunas de forma ascendente",
+							"sSortDescending": ": Ordenar colunas de forma descendente"
+						}
+					}
+
+
+				} );
+			} );
+		</g:javascript>
 	</head>
 	<body>
-		<%/*<a href="#list-produto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>*/%>
-		<div class="nav" role="navigation">
-            <a class="btn btn-primary" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-            <g:link action="create" class="btn btn-primary"><g:message code="default.new.label" args="[entityName]"/></g:link>
-            <%/*
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>*/%>
+		%{--<a href="#list-produto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		<div class="page-header" role="navigation">
+			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="list-produto" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+
+		<div id="list-produto" role="main">
+			<h1 class="titulo-crud"><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
-			<table class="table table-striped table-bordered">
-			<thead>
+
+			<table id="data-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
 					<tr>
 					
-						<g:sortableColumn property="codigo" style="width:10%" title="${message(code: 'produto.codigo.label', default: 'Codigo')}" />
+						<th><g:message code="produto.codigo.label" default="Codigo" /></th>
 					
-						<g:sortableColumn property="nome" style="width: 50%" title="${message(code: 'produto.nome.label', default: 'Nome')}" />
+						<th><g:message code="produto.nome.label" default="Nome" /></th>
 					
-						<g:sortableColumn property="preco" title="${message(code: 'produto.preco.label', default: 'Preco')}" />
+						<th><g:message code="produto.preco.label" default="Preco" /></th>
 					
-						<g:sortableColumn property="quantidade" title="${message(code: 'produto.quantidade.label', default: 'Quantidade')}" />
+						<th><g:message code="produto.quantidade.label" default="Quantidade" /></th>
 					
-						<g:sortableColumn property="dataFabricacao" style="width:10%" title="${message(code: 'produto.dataFabricacao.label', default: 'Data Fabricacao')}" />
+						<th><g:message code="produto.dataFabricacao.label" default="Data Fabricacao" /></th>
 					
-						<g:sortableColumn property="dataVencimento" style="width:10%" title="${message(code: 'produto.dataVencimento.label', default: 'Data Vencimento')}" />
+						<th><g:message code="produto.dataVencimento.label" default="Data Vencimento" /></th>
 					
 					</tr>
 				</thead>
@@ -54,9 +84,9 @@
 					
 						<td>${fieldValue(bean: produtoInstance, field: "quantidade")}</td>
 					
-						<td><g:formatDate formatName="produto.dateformat" date="${produtoInstance.dataFabricacao}" /></td>
+						<td><g:formatDate date="${produtoInstance.dataFabricacao}" /></td>
 					
-						<td><g:formatDate formatName="produto.dateformat" date="${produtoInstance.dataVencimento}" /></td>
+						<td><g:formatDate date="${produtoInstance.dataVencimento}" /></td>
 					
 					</tr>
 				</g:each>

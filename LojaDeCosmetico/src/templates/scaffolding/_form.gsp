@@ -35,11 +35,16 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
 		required = (cp ? !(cp.propertyType in [boolean, Boolean]) && !cp.nullable : false)
 	}
 	%>
-<div class="fieldcontain \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')} ${required ? 'required' : ''}">
-	<label for="${prefix}${p.name}">
+<div class="form-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'has-error has-feedback')} ${required ? 'required' : ''}">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="${prefix}${p.name}">
 		<g:message code="${domainClass.propertyName}.${prefix}${p.name}.label" default="${p.naturalName}" />
 		<% if (required) { %><span class="required-indicator">*</span><% } %>
 	</label>
-	${renderEditor(p)}
+	<div class="col-sm-4">
+		${renderEditor(p)}
+		<g:hasErrors bean="\${${propertyName}}" field="${prefix}${p.name}">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
 </div>
 <%  } %>

@@ -9,82 +9,94 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-produto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+		%{--<a href="#show-produto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		<div class="page-header" role="navigation">
+			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+			<g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="show-produto" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+		<div id="show-produto" role="main">
+			<h1 class="titulo-crud"><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list produto">
+			<form class="form-horizontal">
 			
-				<g:if test="${produtoInstance?.codigo}">
-				<li class="fieldcontain">
-					<span id="codigo-label" class="property-label"><g:message code="produto.codigo.label" default="Codigo" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="codigo-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.codigo.label" default="Codigo" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="codigo-label"><g:fieldValue bean="${produtoInstance}" field="codigo"/></span>
+						<p class="form-control-static" aria-labelledby="codigo-label"><g:fieldValue bean="${produtoInstance}" field="codigo"/></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-				<g:if test="${produtoInstance?.nome}">
-				<li class="fieldcontain">
-					<span id="nome-label" class="property-label"><g:message code="produto.nome.label" default="Nome" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="nome-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.nome.label" default="Nome" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="nome-label"><g:fieldValue bean="${produtoInstance}" field="nome"/></span>
+						<p class="form-control-static" aria-labelledby="nome-label"><g:fieldValue bean="${produtoInstance}" field="nome"/></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-				<g:if test="${produtoInstance?.preco}">
-				<li class="fieldcontain">
-					<span id="preco-label" class="property-label"><g:message code="produto.preco.label" default="Preco" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="preco-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.preco.label" default="Preco" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="preco-label"><g:fieldValue bean="${produtoInstance}" field="preco"/></span>
+						<p class="form-control-static" aria-labelledby="preco-label"><g:fieldValue bean="${produtoInstance}" field="preco"/></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-				<g:if test="${produtoInstance?.quantidade}">
-				<li class="fieldcontain">
-					<span id="quantidade-label" class="property-label"><g:message code="produto.quantidade.label" default="Quantidade" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="quantidade-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.quantidade.label" default="Quantidade" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="quantidade-label"><g:fieldValue bean="${produtoInstance}" field="quantidade"/></span>
+						<p class="form-control-static" aria-labelledby="quantidade-label"><g:fieldValue bean="${produtoInstance}" field="quantidade"/></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-				<g:if test="${produtoInstance?.dataFabricacao}">
-				<li class="fieldcontain">
-					<span id="dataFabricacao-label" class="property-label"><g:message code="produto.dataFabricacao.label" default="Data Fabricacao" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="dataFabricacao-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.dataFabricacao.label" default="Data Fabricacao" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="dataFabricacao-label"><g:formatDate date="${produtoInstance?.dataFabricacao}" /></span>
+						<p class="form-control-static" aria-labelledby="dataFabricacao-label"><g:formatDate date="${produtoInstance?.dataFabricacao}" /></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-				<g:if test="${produtoInstance?.dataVencimento}">
-				<li class="fieldcontain">
-					<span id="dataVencimento-label" class="property-label"><g:message code="produto.dataVencimento.label" default="Data Vencimento" /></span>
+				<g:if test="${produtoInstance}">
+				<div class="form-group">
+					<label id="dataVencimento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.dataVencimento.label" default="Data Vencimento" /></label>
+					<div class="col-xs-4">
 					
-						<span class="property-value" aria-labelledby="dataVencimento-label"><g:formatDate date="${produtoInstance?.dataVencimento}" /></span>
+						<p class="form-control-static" aria-labelledby="dataVencimento-label"><g:formatDate date="${produtoInstance?.dataVencimento}" /></p>
 					
-				</li>
+					</div>
+				</div>
 				</g:if>
 			
-			</ol>
+			</form>
+			<hr>
 			<g:form url="[resource:produtoInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${produtoInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:link class="btn btn-primary" action="edit" resource="${produtoInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<a href="#DeleteModal" class="btn btn-danger" data-toggle="modal"><g:message code="default.button.delete.label" default="Delete" /></a>
 				</fieldset>
 			</g:form>
 		</div>
+	<g:render template="/layouts/deleteModal" model="[item: item]"/>
 	</body>
 </html>
