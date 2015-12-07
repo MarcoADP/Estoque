@@ -35,6 +35,17 @@
 			
 				<g:if test="${clienteInstance}">
 				<div class="form-group">
+					<label id="cpf-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.cpf.label" default="Cpf" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="cpf-label"><g:fieldValue bean="${clienteInstance}" field="cpf"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${clienteInstance}">
+				<div class="form-group">
 					<label id="endereco-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.endereco.label" default="Endereco" /></label>
 					<div class="col-xs-4">
 					
@@ -79,10 +90,10 @@
 			
 				<g:if test="${clienteInstance}">
 				<div class="form-group">
-					<label id="dataCadastro-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.dataCadastro.label" default="Data Cadastro" /></label>
+					<label id="dateCreated-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="cliente.dateCreated.label" default="Date Created" /></label>
 					<div class="col-xs-4">
 					
-						<p class="form-control-static" aria-labelledby="dataCadastro-label"><g:formatDate date="${clienteInstance?.dataCadastro}" /></p>
+						<p class="form-control-static" aria-labelledby="dateCreated-label"><g:formatDate date="${clienteInstance?.dateCreated}" /></p>
 					
 					</div>
 				</div>

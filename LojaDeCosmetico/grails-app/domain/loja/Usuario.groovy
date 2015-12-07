@@ -13,10 +13,16 @@ class Usuario implements Serializable {
 	boolean accountLocked
 	boolean passwordExpired
 
-	Usuario(String username, String password) {
+	String nome
+	String cpf
+	String cargo
+	Date dateCreated
+
+	Usuario(String username, String password, String nome, String cpf, String cargo) {
 		this()
 		this.username = username
 		this.password = password
+		this.nome = nome
 	}
 
 	@Override
@@ -31,7 +37,7 @@ class Usuario implements Serializable {
 
 	@Override
 	String toString() {
-		username
+		nome
 	}
 
 	Set<Papel> getAuthorities() {
@@ -56,10 +62,14 @@ class Usuario implements Serializable {
 
 	static constraints = {
 		username blank: false, unique: true
-		password blank: false
+		password blank: false, password: true
+		nome blank: false
+		cpf cpf: true
+		cargo inList: ["Funcionario", "Gerente"]
 	}
 
 	static mapping = {
 		password column: '`password`'
+		dateCreated column: 'data_criacao'
 	}
 }

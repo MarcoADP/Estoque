@@ -37,6 +37,11 @@ class UsuarioController {
 
         usuarioInstance.save flush:true
 
+        def strCargo = usuarioInstance.cargo.toUpperCase()
+        def strPapel = 'ROLE_' + strCargo
+        def papel = Papel.findOrSaveWhere(authority: strPapel)
+        UsuarioPapel.create(usuarioInstance, papel, true)
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
@@ -64,6 +69,15 @@ class UsuarioController {
 
         usuarioInstance.save flush:true
 
+        def strCargo = usuarioInstance.cargo.toUpperCase()
+        def strPapel = 'ROLE_' + strCargo
+        def papel = Papel.findOrSaveWhere(authority: strPapel)
+
+        UsuarioPapel.removeAll(usuarioInstance)
+        if (!usuarioInstance.authorities.contains(papel)){
+            UsuarioPapel.create(usuarioInstance, papel, true)
+        }
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuarioInstance.id])
@@ -81,6 +95,7 @@ class UsuarioController {
             return
         }
 
+        UsuarioPapel.removeAll(usuarioInstance)
         usuarioInstance.delete flush:true
 
         request.withFormat {

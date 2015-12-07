@@ -60,6 +60,8 @@
 					
 						<th><g:message code="cliente.nome.label" default="Nome" /></th>
 					
+						<th><g:message code="cliente.cpf.label" default="Cpf" /></th>
+					
 						<th><g:message code="cliente.endereco.label" default="Endereco" /></th>
 					
 						<th><g:message code="cliente.telefone.label" default="Telefone" /></th>
@@ -67,8 +69,6 @@
 						<th><g:message code="cliente.dataNascimento.label" default="Data Nascimento" /></th>
 					
 						<th><g:message code="cliente.idade.label" default="Idade" /></th>
-					
-						<th><g:message code="cliente.dataCadastro.label" default="Data Cadastro" /></th>
 					
 					</tr>
 				</thead>
@@ -78,6 +78,8 @@
 					
 						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "nome")}</g:link></td>
 					
+						<td>${fieldValue(bean: clienteInstance, field: "cpf")}</td>
+					
 						<td>${fieldValue(bean: clienteInstance, field: "endereco")}</td>
 					
 						<td>${fieldValue(bean: clienteInstance, field: "telefone")}</td>
@@ -85,8 +87,6 @@
 						<td><g:formatDate date="${clienteInstance.dataNascimento}" /></td>
 					
 						<td>${fieldValue(bean: clienteInstance, field: "idade")}</td>
-					
-						<td><g:formatDate date="${clienteInstance.dataCadastro}" /></td>
 					
 					</tr>
 				</g:each>

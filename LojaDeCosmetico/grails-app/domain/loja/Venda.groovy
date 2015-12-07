@@ -2,7 +2,7 @@ package loja
 
 class Venda {
 
-    int codVenda;
+    int codigo;
     Date dataVenda;
     Cliente cliente;
     //static hasOne = [cliente: Cliente];
@@ -12,11 +12,11 @@ class Venda {
     Double precoTotal;
 
     static constraints = {
-        codVenda();
-        cliente();
+        codigo();
         produto();
         precoTotal();
-        status();
+        cliente();
+        status(inList: ["A pagar", "Pago"]);
         dataVenda();
     }
 }

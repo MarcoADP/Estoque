@@ -36,7 +36,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:field name="preco" class="form-control" value="${fieldValue(bean: produtoInstance, field: 'preco')}" required=""/>
+		<g:field name="preco" class="form-control" onKeyPress="mascara(this, mvalor)" value="${fieldValue(bean: produtoInstance, field: 'preco')}" required="" type="text"/>
 
 		<g:hasErrors bean="${produtoInstance}" field="preco">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -85,4 +85,3 @@
 		</g:hasErrors>
 	</div>
 </div>
-

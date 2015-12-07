@@ -58,11 +58,11 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="venda.codVenda.label" default="Cod Venda" /></th>
-					
-						<th><g:message code="venda.cliente.label" default="Cliente" /></th>
+						<th><g:message code="venda.codigo.label" default="Codigo" /></th>
 					
 						<th><g:message code="venda.precoTotal.label" default="Preco Total" /></th>
+					
+						<th><g:message code="venda.cliente.label" default="Cliente" /></th>
 					
 						<th><g:message code="venda.status.label" default="Status" /></th>
 					
@@ -74,11 +74,11 @@
 				<g:each in="${vendaInstanceList}" status="i" var="vendaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${vendaInstance.id}">${fieldValue(bean: vendaInstance, field: "codVenda")}</g:link></td>
-					
-						<td><g:link controller="cliente" action="show" id="${vendaInstance?.cliente?.id}">${fieldValue(bean: vendaInstance, field: "cliente")}</g:link></td>
+						<td><g:link action="show" id="${vendaInstance.id}">${fieldValue(bean: vendaInstance, field: "codigo")}</g:link></td>
 					
 						<td>${fieldValue(bean: vendaInstance, field: "precoTotal")}</td>
+					
+						<td><g:link controller="cliente" action="show" id="${vendaInstance?.cliente?.id}">${fieldValue(bean: vendaInstance, field: "cliente")}</g:link></td>
 					
 						<td>${fieldValue(bean: vendaInstance, field: "status")}</td>
 					

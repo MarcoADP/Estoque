@@ -35,6 +35,10 @@ class ClienteController {
             return
         }
 
+        int dataAgora = new Date().year
+        int idade = dataAgora - clienteInstance.dataNascimento.year
+        clienteInstance.idade = idade
+
         clienteInstance.save flush:true
 
         request.withFormat {
@@ -61,6 +65,10 @@ class ClienteController {
             respond clienteInstance.errors, view:'edit'
             return
         }
+
+        int dataAgora = new Date().year
+        int idade = dataAgora - clienteInstance.dataNascimento.year
+        clienteInstance.idade = idade
 
         clienteInstance.save flush:true
 

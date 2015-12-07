@@ -3,20 +3,24 @@ package loja
 class Cliente {
 
     String nome;
-
+    String cpf;
     String endereco;
-    int telefone;
+    String telefone;
     Date dataNascimento;
     int idade;
-    Date dataCadastro;
+    Date dateCreated;
 
     static constraints = {
         nome();
+        cpf(cpf: true);
         endereco();
         telefone();
-        dataNascimento();
-        idade();
-        dataCadastro();
+        dataNascimento(max: new Date());
+        idade(nullable: true);
+    }
+
+    static mapping = {
+        dateCreated column: 'data_criacao'
     }
 
     String toString(){

@@ -139,3 +139,4 @@ grails.plugin.springsecurity.roleHierarchy = '''
    ROLE_GERENTE > ROLE_FUNCIONARIO
 '''
 
+grails.plugins.brValidation.validation.type =  both

@@ -60,15 +60,15 @@
 					
 						<th><g:message code="usuario.username.label" default="Username" /></th>
 					
-						<th><g:message code="usuario.password.label" default="Password" /></th>
+						%{--<th><g:message code="usuario.password.label" default="Password" /></th>--}%
 					
-						<th><g:message code="usuario.accountExpired.label" default="Account Expired" /></th>
+						<th><g:message code="usuario.nome.label" default="Nome" /></th>
 					
-						<th><g:message code="usuario.accountLocked.label" default="Account Locked" /></th>
+						<th><g:message code="usuario.cpf.label" default="Cpf" /></th>
 					
-						<th><g:message code="usuario.enabled.label" default="Enabled" /></th>
+						<th><g:message code="usuario.cargo.label" default="Cargo" /></th>
 					
-						<th><g:message code="usuario.passwordExpired.label" default="Password Expired" /></th>
+						%{--<th><g:message code="usuario.accountExpired.label" default="Account Expired" /></th>--}%
 					
 					</tr>
 				</thead>
@@ -78,15 +78,15 @@
 					
 						<td><g:link action="show" id="${usuarioInstance.id}">${fieldValue(bean: usuarioInstance, field: "username")}</g:link></td>
 					
-						<td>${fieldValue(bean: usuarioInstance, field: "password")}</td>
+						%{--<td>${fieldValue(bean: usuarioInstance, field: "password")}</td>--}%
 					
-						<td><g:formatBoolean boolean="${usuarioInstance.accountExpired}" /></td>
+						<td>${fieldValue(bean: usuarioInstance, field: "nome")}</td>
 					
-						<td><g:formatBoolean boolean="${usuarioInstance.accountLocked}" /></td>
+						<td><g:formatCpf cpf="${usuarioInstance.cpf}"/></td>
 					
-						<td><g:formatBoolean boolean="${usuarioInstance.enabled}" /></td>
+						<td>${fieldValue(bean: usuarioInstance, field: "cargo")}</td>
 					
-						<td><g:formatBoolean boolean="${usuarioInstance.passwordExpired}" /></td>
+						%{--<td><g:formatBoolean boolean="${usuarioInstance.accountExpired}" /></td>--}%
 					
 					</tr>
 				</g:each>

@@ -35,7 +35,7 @@
         <ul class="nav nav-sidebar">
             <li class="${controllerName == null ? 'active' : ''}"><a href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home"></span>Principal</a></li>
             <sec:ifAllGranted roles="ROLE_GERENTE">
-                <li class="${controllerName == 'usuarios' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-user"></span>Usuários</a></li>
+                <li class="${controllerName == 'usuario' ? 'active' : ''}"><g:link controller="usuario"><span class="glyphicon glyphicon-user"></span>Usuários</g:link></li>
             </sec:ifAllGranted>
             <li class="${controllerName == 'venda' ? 'active' : ''}"><g:link controller="venda"><span class="glyphicon glyphicon-tag"></span>Vendas</g:link></li>
             <sec:ifAllGranted roles="ROLE_GERENTE">

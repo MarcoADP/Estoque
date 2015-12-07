@@ -16,6 +16,20 @@
 	</div>
 </div>
 
+<div class="form-group ${hasErrors(bean: clienteInstance, field: 'cpf', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cpf">
+		<g:message code="cliente.cpf.label" default="Cpf" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:textField id="cpf" name="cpf" class="form-control" required="" value="${clienteInstance?.cpf}"/>
+
+		<g:hasErrors bean="${clienteInstance}" field="cpf">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
 <div class="form-group ${hasErrors(bean: clienteInstance, field: 'endereco', 'has-error has-feedback')} required">
 	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="endereco">
 		<g:message code="cliente.endereco.label" default="Endereco" />
@@ -36,7 +50,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:field name="telefone" class="form-control" type="number" value="${clienteInstance.telefone}" required=""/>
+		<g:textField id="fone" name="telefone" class="form-control" required="" value="${clienteInstance?.telefone}"/>
 
 		<g:hasErrors bean="${clienteInstance}" field="telefone">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -58,31 +72,10 @@
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(bean: clienteInstance, field: 'idade', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="idade">
-		<g:message code="cliente.idade.label" default="Idade" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-		<g:field name="idade" class="form-control" type="number" value="${clienteInstance.idade}" required=""/>
-
-		<g:hasErrors bean="${clienteInstance}" field="idade">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
-
-<div class="form-group ${hasErrors(bean: clienteInstance, field: 'dataCadastro', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="dataCadastro">
-		<g:message code="cliente.dataCadastro.label" default="Data Cadastro" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-		<g:datePicker name="dataCadastro" precision="day"  value="${clienteInstance?.dataCadastro}"  />
-
-		<g:hasErrors bean="${clienteInstance}" field="dataCadastro">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
+<script type='text/javascript'>
+	jQuery(function($){
+		$("#fone").mask("(99) 9999-9999");
+		$("#cpf").mask("999.999.999-99");
+	});
+</script>
 

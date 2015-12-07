@@ -24,21 +24,10 @@
 			
 				<g:if test="${vendaInstance}">
 				<div class="form-group">
-					<label id="codVenda-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.codVenda.label" default="Cod Venda" /></label>
+					<label id="codigo-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.codigo.label" default="Codigo" /></label>
 					<div class="col-xs-4">
 					
-						<p class="form-control-static" aria-labelledby="codVenda-label"><g:fieldValue bean="${vendaInstance}" field="codVenda"/></p>
-					
-					</div>
-				</div>
-				</g:if>
-			
-				<g:if test="${vendaInstance}">
-				<div class="form-group">
-					<label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.cliente.label" default="Cliente" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${vendaInstance?.cliente?.id}">${vendaInstance?.cliente?.encodeAsHTML()}</g:link></p>
+						<p class="form-control-static" aria-labelledby="codigo-label"><g:fieldValue bean="${vendaInstance}" field="codigo"/></p>
 					
 					</div>
 				</div>
@@ -63,6 +52,17 @@
 					<div class="col-xs-4">
 					
 						<p class="form-control-static" aria-labelledby="precoTotal-label"><g:fieldValue bean="${vendaInstance}" field="precoTotal"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${vendaInstance}">
+				<div class="form-group">
+					<label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.cliente.label" default="Cliente" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${vendaInstance?.cliente?.id}">${vendaInstance?.cliente?.encodeAsHTML()}</g:link></p>
 					
 					</div>
 				</div>

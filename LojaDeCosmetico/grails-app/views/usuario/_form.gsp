@@ -22,9 +22,51 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:textField name="password" class="form-control" required="" value="${usuarioInstance?.password}"/>
+		<g:field type="password" name="password" class="form-control" required="" value="${usuarioInstance?.password}"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="password">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'nome', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="nome">
+		<g:message code="usuario.nome.label" default="Nome" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:textField name="nome" class="form-control" required="" value="${usuarioInstance?.nome}"/>
+
+		<g:hasErrors bean="${usuarioInstance}" field="nome">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'cpf', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cpf">
+		<g:message code="usuario.cpf.label" default="Cpf" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:textField id="cpf" name="cpf" class="form-control" required="" value="${usuarioInstance?.cpf}"/>
+
+		<g:hasErrors bean="${usuarioInstance}" field="cpf">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'cargo', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cargo">
+		<g:message code="usuario.cargo.label" default="Cargo" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:select name="cargo" class="form-control" from="${usuarioInstance.constraints.cargo.inList}" required="" value="${usuarioInstance?.cargo}" valueMessagePrefix="usuario.cargo"/>
+
+		<g:hasErrors bean="${usuarioInstance}" field="cargo">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>
@@ -85,4 +127,10 @@
 		</g:hasErrors>
 	</div>
 </div>
+
+<script type='text/javascript'>
+	jQuery(function($){
+		$("#cpf").mask("999.999.999-99");
+	});
+</script>
 

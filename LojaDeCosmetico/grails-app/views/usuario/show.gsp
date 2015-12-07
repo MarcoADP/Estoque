@@ -46,6 +46,50 @@
 			
 				<g:if test="${usuarioInstance}">
 				<div class="form-group">
+					<label id="nome-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="usuario.nome.label" default="Nome" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="nome-label"><g:fieldValue bean="${usuarioInstance}" field="nome"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${usuarioInstance}">
+				<div class="form-group">
+					<label id="cpf-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="usuario.cpf.label" default="Cpf" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="cpf-label"><g:formatCpf cpf="${usuarioInstance.cpf}"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${usuarioInstance}">
+				<div class="form-group">
+					<label id="cargo-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="usuario.cargo.label" default="Cargo" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="cargo-label"><g:fieldValue bean="${usuarioInstance}" field="cargo"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+
+				<g:if test="${usuarioInstance}">
+					<div class="form-group">
+						<label id="dateCreated-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="usuario.dateCreated.label" default="Date Created" /></label>
+						<div class="col-xs-4">
+
+							<p class="form-control-static" aria-labelledby="dateCreated-label"><g:formatDate date="${usuarioInstance?.dateCreated}" /></p>
+
+						</div>
+					</div>
+				</g:if>
+			
+				<g:if test="${usuarioInstance}">
+				<div class="form-group">
 					<label id="accountExpired-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="usuario.accountExpired.label" default="Account Expired" /></label>
 					<div class="col-xs-4">
 					
