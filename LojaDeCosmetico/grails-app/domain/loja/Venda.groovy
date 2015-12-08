@@ -12,11 +12,11 @@ class Venda {
     Double precoTotal;
 
     static constraints = {
-        codigo();
-        produto();
-        precoTotal();
-        cliente();
+        codigo unique:true, blank:false;
+        produto blank:false;
+        precoTotal blank:false;
+        cliente blank:false;
         status(inList: ["A pagar", "Pago"]);
-        dataVenda();
+        dataVenda max: new Date();
     }
 }
