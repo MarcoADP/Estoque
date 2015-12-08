@@ -58,15 +58,17 @@
 				<thead>
 					<tr>
 					
-						<th><g:message code="venda.codigo.label" default="Codigo" /></th>
-					
-						<th><g:message code="venda.precoTotal.label" default="Preco Total" /></th>
-					
 						<th><g:message code="venda.cliente.label" default="Cliente" /></th>
 					
-						<th><g:message code="venda.status.label" default="Status" /></th>
+						<th><g:message code="venda.dataTransacao.label" default="Data Transacao" /></th>
 					
-						<th><g:message code="venda.dataVenda.label" default="Data Venda" /></th>
+						<th><g:message code="venda.quantidadeTotal.label" default="Quantidade Total" /></th>
+					
+						<th><g:message code="venda.valorTotal.label" default="Valor Total" /></th>
+					
+						<th><g:message code="venda.codigo.label" default="Codigo" /></th>
+					
+						<th><g:message code="venda.pagamento.label" default="Pagamento" /></th>
 					
 					</tr>
 				</thead>
@@ -74,15 +76,17 @@
 				<g:each in="${vendaInstanceList}" status="i" var="vendaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${vendaInstance.id}">${fieldValue(bean: vendaInstance, field: "codigo")}</g:link></td>
+						<td><g:link action="show" id="${vendaInstance.id}">${fieldValue(bean: vendaInstance, field: "cliente")}</g:link></td>
 					
-						<td>${fieldValue(bean: vendaInstance, field: "precoTotal")}</td>
+						<td><g:formatDate date="${vendaInstance.dataTransacao}" /></td>
 					
-						<td><g:link controller="cliente" action="show" id="${vendaInstance?.cliente?.id}">${fieldValue(bean: vendaInstance, field: "cliente")}</g:link></td>
+						<td>${fieldValue(bean: vendaInstance, field: "quantidadeTotal")}</td>
 					
-						<td>${fieldValue(bean: vendaInstance, field: "status")}</td>
+						<td>${fieldValue(bean: vendaInstance, field: "valorTotal")}</td>
 					
-						<td><g:formatDate date="${vendaInstance.dataVenda}" /></td>
+						<td>${fieldValue(bean: vendaInstance, field: "codigo")}</td>
+					
+						<td>${fieldValue(bean: vendaInstance, field: "pagamento")}</td>
 					
 					</tr>
 				</g:each>

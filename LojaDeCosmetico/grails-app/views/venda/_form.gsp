@@ -2,6 +2,62 @@
 
 
 
+<div class="form-group ${hasErrors(bean: vendaInstance, field: 'cliente', 'has-error has-feedback')} ">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cliente">
+		<g:message code="venda.cliente.label" default="Cliente" />
+		
+	</label>
+	<div class="col-sm-4">
+		<g:select id="cliente" name="cliente.id" class="form-control" from="${loja.Cliente.list()}" optionKey="id" value="${vendaInstance?.cliente?.id}" noSelection="['null': '']"/>
+
+		<g:hasErrors bean="${vendaInstance}" field="cliente">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: vendaInstance, field: 'dataTransacao', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="dataTransacao">
+		<g:message code="venda.dataTransacao.label" default="Data Transacao" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:datePicker name="dataTransacao" precision="day"  value="${vendaInstance?.dataTransacao}"  />
+
+		<g:hasErrors bean="${vendaInstance}" field="dataTransacao">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: vendaInstance, field: 'quantidadeTotal', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="quantidadeTotal">
+		<g:message code="venda.quantidadeTotal.label" default="Quantidade Total" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:field name="quantidadeTotal" class="form-control" type="number" value="${vendaInstance.quantidadeTotal}" required=""/>
+
+		<g:hasErrors bean="${vendaInstance}" field="quantidadeTotal">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: vendaInstance, field: 'valorTotal', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="valorTotal">
+		<g:message code="venda.valorTotal.label" default="Valor Total" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:field name="valorTotal" class="form-control" value="${fieldValue(bean: vendaInstance, field: 'valorTotal')}" required=""/>
+
+		<g:hasErrors bean="${vendaInstance}" field="valorTotal">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
 <div class="form-group ${hasErrors(bean: vendaInstance, field: 'codigo', 'has-error has-feedback')} required">
 	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="codigo">
 		<g:message code="venda.codigo.label" default="Codigo" />
@@ -16,71 +72,37 @@
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(bean: vendaInstance, field: 'produto', 'has-error has-feedback')} ">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="produto">
-		<g:message code="venda.produto.label" default="Produto" />
+<div class="form-group ${hasErrors(bean: vendaInstance, field: 'pagamento', 'has-error has-feedback')} ">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="pagamento">
+		<g:message code="venda.pagamento.label" default="Pagamento" />
 		
 	</label>
 	<div class="col-sm-4">
-		<g:select name="produto" class="form-control" from="${loja.Produto.list()}" multiple="multiple" optionKey="id" size="5" value="${vendaInstance?.produto*.id}"/>
+		<g:textField name="pagamento" class="form-control" value="${vendaInstance?.pagamento}"/>
 
-		<g:hasErrors bean="${vendaInstance}" field="produto">
+		<g:hasErrors bean="${vendaInstance}" field="pagamento">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(bean: vendaInstance, field: 'precoTotal', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="precoTotal">
-		<g:message code="venda.precoTotal.label" default="Preco Total" />
-		<span class="required-indicator">*</span>
+ <div class="form-group ${hasErrors(bean: vendaInstance, field: 'itensProduto', 'has-error has-feedback')} ">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="itensProduto">
+		<g:message code="venda.itensProduto.label" default="Itens Produto" />
+
 	</label>
-	<div class="col-sm-4">
-		<g:field name="precoTotal" class="form-control" value="${fieldValue(bean: vendaInstance, field: 'precoTotal')}" required=""/>
+	 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-novo-produto">
+		 Adicionar Produto
+	 </button>
+	 //ARRUMAR aqui!!
+	<g:each in="${vendaInstance?.itensProduto?}" var="i">
+		<li><g:link controller="itemVenda" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+	</g:each>
 
-		<g:hasErrors bean="${vendaInstance}" field="precoTotal">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
 
-<div class="form-group ${hasErrors(bean: vendaInstance, field: 'cliente', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cliente">
-		<g:message code="venda.cliente.label" default="Cliente" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-		<g:select id="cliente" name="cliente.id" class="form-control" from="${loja.Cliente.list()}" optionKey="id" required="" value="${vendaInstance?.cliente?.id}"/>
 
-		<g:hasErrors bean="${vendaInstance}" field="cliente">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
 
-<div class="form-group ${hasErrors(bean: vendaInstance, field: 'status', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="status">
-		<g:message code="venda.status.label" default="Status" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-		<g:select name="status" class="form-control" from="${vendaInstance.constraints.status.inList}" required="" value="${vendaInstance?.status}" valueMessagePrefix="venda.status"/>
-
-		<g:hasErrors bean="${vendaInstance}" field="status">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
-
-<div class="form-group ${hasErrors(bean: vendaInstance, field: 'dataVenda', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="dataVenda">
-		<g:message code="venda.dataVenda.label" default="Data Venda" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-		<g:datePicker name="dataVenda" precision="day"  value="${vendaInstance?.dataVenda}"  />
-
-		<g:hasErrors bean="${vendaInstance}" field="dataVenda">
+		<g:hasErrors bean="${vendaInstance}" field="itensProduto">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>

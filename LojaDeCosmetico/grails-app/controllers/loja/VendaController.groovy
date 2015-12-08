@@ -8,7 +8,8 @@ import grails.transaction.Transactional
 class VendaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	
+	//def results = Venda.list(params)
     def index(Integer max) {
         params.max = Math.min(max ?: Venda.count(), 100)
         respond Venda.list(params), model: [vendaInstanceCount: Venda.count()]
@@ -39,7 +40,8 @@ class VendaController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'venda.label', default: 'Venda'), vendaInstance.id])
-                redirect vendaInstance
+                redirect(action:"edit", id: vendaInstance.id)
+				//redirect vendaInstance
             }
             '*' { respond vendaInstance, [status: CREATED] }
         }
@@ -70,6 +72,48 @@ class VendaController {
             }
             '*' { respond vendaInstance, [status: OK] }
         }
+    }
+
+
+    @Transactional
+    def addProduct(Venda vendaInstance){
+        if (vendaInstance == null){
+            notFound()
+            return
+        }
+
+        Produto produto = Produto.get(params.produto.id)
+        int quantidade = Integer.parseInt(params.quantidade)
+
+        if(quantidade > produto.quantidade ){
+            flash.message = message(code: 'compra.erro.item.semestoque')
+        }else{
+            if(!vendaInstance.addItemProduto(produto,quantidade)){
+                flash.message = message(code: 'compra.erro.item')
+            }
+            vendaInstance.save flush:true
+        }
+
+        redirect(action:"edit", id: vendaInstance.id)
+    }
+
+    @Transactional
+    def removeProduct(Venda vendaInstance){
+        if (vendaInstance == null){
+            notFound()
+            return
+        }
+
+        ItemVenda item = ItemVenda.findById(params.itemId)
+        vendaInstance.removeItemProduto(item)
+
+        if(item){
+            item.delete flush:true
+        }
+
+        vendaInstance.save flush:true
+
+        redirect(action:"edit", id: vendaInstance.id)
     }
 
     @Transactional

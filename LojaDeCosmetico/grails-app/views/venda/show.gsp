@@ -24,41 +24,6 @@
 			
 				<g:if test="${vendaInstance}">
 				<div class="form-group">
-					<label id="codigo-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.codigo.label" default="Codigo" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="codigo-label"><g:fieldValue bean="${vendaInstance}" field="codigo"/></p>
-					
-					</div>
-				</div>
-				</g:if>
-			
-				<g:if test="${vendaInstance}">
-				<div class="form-group">
-					<label id="produto-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.produto.label" default="Produto" /></label>
-					<div class="col-xs-4">
-					
-						<g:each in="${vendaInstance.produto}" var="p">
-						<p class="form-control-static" aria-labelledby="produto-label"><g:link controller="produto" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></p>
-						</g:each>
-					
-					</div>
-				</div>
-				</g:if>
-			
-				<g:if test="${vendaInstance}">
-				<div class="form-group">
-					<label id="precoTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.precoTotal.label" default="Preco Total" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="precoTotal-label"><g:fieldValue bean="${vendaInstance}" field="precoTotal"/></p>
-					
-					</div>
-				</div>
-				</g:if>
-			
-				<g:if test="${vendaInstance}">
-				<div class="form-group">
 					<label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.cliente.label" default="Cliente" /></label>
 					<div class="col-xs-4">
 					
@@ -70,10 +35,10 @@
 			
 				<g:if test="${vendaInstance}">
 				<div class="form-group">
-					<label id="status-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.status.label" default="Status" /></label>
+					<label id="dataTransacao-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.dataTransacao.label" default="Data Transacao" /></label>
 					<div class="col-xs-4">
 					
-						<p class="form-control-static" aria-labelledby="status-label"><g:fieldValue bean="${vendaInstance}" field="status"/></p>
+						<p class="form-control-static" aria-labelledby="dataTransacao-label"><g:formatDate date="${vendaInstance?.dataTransacao}" /></p>
 					
 					</div>
 				</div>
@@ -81,10 +46,56 @@
 			
 				<g:if test="${vendaInstance}">
 				<div class="form-group">
-					<label id="dataVenda-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.dataVenda.label" default="Data Venda" /></label>
+					<label id="quantidadeTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.quantidadeTotal.label" default="Quantidade Total" /></label>
 					<div class="col-xs-4">
 					
-						<p class="form-control-static" aria-labelledby="dataVenda-label"><g:formatDate date="${vendaInstance?.dataVenda}" /></p>
+						<p class="form-control-static" aria-labelledby="quantidadeTotal-label"><g:fieldValue bean="${vendaInstance}" field="quantidadeTotal"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${vendaInstance}">
+				<div class="form-group">
+					<label id="valorTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.valorTotal.label" default="Valor Total" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="valorTotal-label"><g:fieldValue bean="${vendaInstance}" field="valorTotal"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${vendaInstance}">
+				<div class="form-group">
+					<label id="codigo-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.codigo.label" default="Codigo" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="codigo-label"><g:fieldValue bean="${vendaInstance}" field="codigo"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${vendaInstance}">
+				<div class="form-group">
+					<label id="pagamento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.pagamento.label" default="Pagamento" /></label>
+					<div class="col-xs-4">
+					
+						<p class="form-control-static" aria-labelledby="pagamento-label"><g:fieldValue bean="${vendaInstance}" field="pagamento"/></p>
+					
+					</div>
+				</div>
+				</g:if>
+			
+				<g:if test="${vendaInstance}">
+				<div class="form-group">
+					<label id="itensProduto-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.itensProduto.label" default="Itens Produto" /></label>
+					<div class="col-xs-4">
+					
+						<g:each in="${vendaInstance.itensProduto}" var="i">
+						<p class="form-control-static" aria-labelledby="itensProduto-label"><g:link controller="itemVenda" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></p>
+						</g:each>
 					
 					</div>
 				</div>
