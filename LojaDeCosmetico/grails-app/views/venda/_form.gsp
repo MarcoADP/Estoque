@@ -95,9 +95,33 @@
 		 Adicionar Produto
 	 </button>
 	 //ARRUMAR aqui!!
-	<g:each in="${vendaInstance?.itensProduto?}" var="i">
-		<li><g:link controller="itemVenda" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-	</g:each>
+	<table class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Produto</th>
+				<th>Preço Unitário</th>
+				<th>Quantidade</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+	 <tbody>
+	 <g:each in="${vendaInstance?.itensProduto}" status="i" var="itemInstance">
+		 <tr>
+			 <td>${fieldValue(bean: itemInstance.produto, field: "nome")}</td>
+			 <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance.produto, field: "preco"), format: '##0.00')}</td>
+			 <td>${fieldValue(bean: itemInstance, field: "quantidade")}</td>
+			 <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance, field: "total"), format: '##0.00')}</td>
+			 <td class="text-right">
+				 <g:link controller="venda" action="removeProduct"
+						 id="${vendaInstance.id}" params="[itemId: itemInstance.id]" class="btn btn-sm btn-danger" >
+					 Remover
+				 </g:link>
+			 </td>
+		 </tr>
+	 </g:each>
+	 </tbody>
+
+ 	</table>
 
 
 
