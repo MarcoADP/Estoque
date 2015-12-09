@@ -64,7 +64,7 @@ class Usuario implements Serializable {
 		username blank: false, unique: true
 		password blank: false, password: true
 		nome blank: false
-		cpf cpf: true
+		cpf cpf: true, unique: true
 		cargo inList: ["Funcionario", "Gerente"]
 	}
 

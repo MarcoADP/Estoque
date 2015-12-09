@@ -12,7 +12,7 @@ class Cliente {
 
     static constraints = {
         nome();
-        cpf(cpf: true);
+        cpf(cpf: true, unique: true);
         endereco();
         telefone();
         dataNascimento(max: new Date());
