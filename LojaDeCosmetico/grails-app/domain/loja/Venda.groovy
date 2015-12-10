@@ -75,6 +75,10 @@ class Venda extends Transacao{
         if(quantidade < 0){
             return false
         }
+
+        if(quantidade > produto.quantidade_in_stock){
+            return false
+        }
         
         if(item.hasErrors()){
             return false
@@ -83,10 +87,10 @@ class Venda extends Transacao{
         this.itensProduto.add(item)
         
         this.quantidadeTotal += item.quantidade
-        this.valorTotal += item.total
+        this.valorTotal += item.preco_total
         
         this.quantidadeTotal += item.quantidade
-        this.valorTotal += item.total
+        this.valorTotal += item.preco_total
         
         return true
     }
@@ -94,7 +98,7 @@ class Venda extends Transacao{
     boolean removeItemProduto(ItemVenda item){
         if(this.itensProduto.remove(item)){
             this.quantidadeTotal -= item.quantidade
-            this.valorTotal -= item.total
+            this.valorTotal -= item.preco_total
             return true
         }else{
             return false
@@ -103,9 +107,7 @@ class Venda extends Transacao{
 	
     void updateSaldoOfProducts(){
         for(ItemVenda item : this.itensProduto){
-            item.produto.quantidade -= item.quantidade
-            //item.produto.quantidadeVendido += item.quantidade
-            item.produto.save(flush: true)
+            item.produto.sellFromStock(item.quantidade)
         }
     }
 	

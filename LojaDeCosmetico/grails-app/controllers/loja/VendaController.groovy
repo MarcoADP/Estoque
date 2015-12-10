@@ -85,7 +85,7 @@ class VendaController {
         Produto produto = Produto.get(params.produto.id)
         int quantidade = Integer.parseInt(params.quantidade)
 
-        if(quantidade > produto.quantidade ){
+        if(quantidade > produto.quantidade_in_stock ){
             flash.message = message(code: 'compra.erro.item.semestoque')
         }else{
             if(!vendaInstance.addItemProduto(produto,quantidade)){
