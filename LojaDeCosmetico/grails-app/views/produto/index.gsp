@@ -64,11 +64,11 @@
 					
 						<th><g:message code="produto.preco.label" default="Preco" /></th>
 					
-						<th><g:message code="produto.quantidade_in_stock.label" default="Quantidadeinstock" /></th>
-					
-						<th><g:message code="produto.quantidade_vendido.label" default="Quantidadevendido" /></th>
+						<th><g:message code="produto.quantidade.label" default="Quantidade" /></th>
 					
 						<th><g:message code="produto.dataFabricacao.label" default="Data Fabricacao" /></th>
+					
+						<th><g:message code="produto.dataVencimento.label" default="Data Vencimento" /></th>
 					
 					</tr>
 				</thead>
@@ -82,11 +82,11 @@
 					
 						<td>${fieldValue(bean: produtoInstance, field: "preco")}</td>
 					
-						<td>${fieldValue(bean: produtoInstance, field: "quantidade_in_stock")}</td>
-					
-						<td>${fieldValue(bean: produtoInstance, field: "quantidade_vendido")}</td>
+						<td>${fieldValue(bean: produtoInstance, field: "quantidade")}</td>
 					
 						<td><g:formatDate date="${produtoInstance.dataFabricacao}" /></td>
+					
+						<td><g:formatDate date="${produtoInstance.dataVencimento}" /></td>
 					
 					</tr>
 				</g:each>

@@ -1,6 +1,8 @@
 package loja
 
-class ItemVenda {
+import loja.Produto
+
+class ItemVendaProduto {
     static belongsTo = [Venda,Produto]
     Venda venda
     Produto produto
@@ -11,7 +13,7 @@ class ItemVenda {
         quantidade(min:0)
     }
     
-    ItemVenda(Produto produto, Venda venda , int quantidade){
+    ItemVendaProduto(Produto produto, Venda venda , int quantidade){
         this.venda = venda
         this.produto = produto
         this.quantidade = quantidade

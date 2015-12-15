@@ -57,21 +57,10 @@
 			
 				<g:if test="${produtoInstance}">
 				<div class="form-group">
-					<label id="quantidade_in_stock-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.quantidade_in_stock.label" default="Quantidadeinstock" /></label>
+					<label id="quantidade-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.quantidade.label" default="Quantidade" /></label>
 					<div class="col-xs-4">
 					
-						<p class="form-control-static" aria-labelledby="quantidade_in_stock-label"><g:fieldValue bean="${produtoInstance}" field="quantidade_in_stock"/></p>
-					
-					</div>
-				</div>
-				</g:if>
-			
-				<g:if test="${produtoInstance}">
-				<div class="form-group">
-					<label id="quantidade_vendido-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="produto.quantidade_vendido.label" default="Quantidadevendido" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="quantidade_vendido-label"><g:fieldValue bean="${produtoInstance}" field="quantidade_vendido"/></p>
+						<p class="form-control-static" aria-labelledby="quantidade-label"><g:fieldValue bean="${produtoInstance}" field="quantidade"/></p>
 					
 					</div>
 				</div>
