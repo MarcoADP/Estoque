@@ -123,10 +123,10 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'loja.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'loja.UsuarioPapel'
 grails.plugin.springsecurity.authority.className = 'loja.Papel'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        //'/**':              ['permitAll'],
-	'/':                ['ROLE_FUNCIONARIO'],
-	'/index':           ['ROLE_FUNCIONARIO'],
-	'/index.gsp':       ['ROLE_FUNCIONARIO'],
+        '/**':              ['permitAll'],
+	'/':                ['permitAll'],
+	'/index':           ['permitAll'],
+	'/index.gsp':       ['permitAll'],
 	'/assets/**':       ['permitAll'],
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],

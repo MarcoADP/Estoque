@@ -1,80 +1,82 @@
 package loja
 
-import loja.Produto
-
-
 class Venda extends Transacao{
-    enum Status{
-        EM_ABERTO, CANCELADA, FINALIZADA
-    }
+	enum Status {
+		A_PAGAR, PAGO, CANCELADO
+	}
+    int codigo;
+	static hasMany = [itensProduto: ItemVenda]
+	List<ItemVenda> itensProduto = new ArrayList<ItemVenda>()
     
-    Status status = Status.EM_ABERTO
-    static hasMany = [itensProduto: ItemVendaProduto]
-    List<ItemVendaProduto> itensProduto = new ArrayList<ItemVendaProduto>()
-    int quantidadeTotalProdutos = 0
-    double valorTotalProdutos = 0
-    
-    int quantidadeTotal = 0
-    double valorTotal = 0
-    
-    String pagamento
-    
+	int quantidadeTotal = 0
+	double valorTotal = 0
+	String Pagamento
+	
+	//Date dataVenda;
+    //static hasMany = [produto: Produto]
+    //String status;
+    //Double precoTotal;
+
     static constraints = {
-        quantidadeTotal(min: 0)
+        codigo unique:true, blank:false;
         valorTotal(min:0d)
-        pagamento(nullable: true)
+		pagamento(nullable: true)
     }
-    
-    boolean isEmAberto(){
-        if (status == Status.EM_ABERTO){
-            return true
-        }
-    }
-    
-    boolean isCancelada(){
-        if (status == Status.CANCELADA){
-            return true
-        }
-    }
-    
-    boolean isFinalizada(){
-        if (status == Status.FINALIZADA){
-            return true
-        }
-    }
-    
-    String getStatusStr(){
-        if (status == Status.EM_ABERTO){
-            return "Em Aberto"
-        } else if (status == Status.FINALIZADA){
-            return "Finalizada"
+	
+	boolean isAPagar(){
+		if(status == Status.A_PAGAR){
+			return true
+		}
+	}
+	
+	boolean isPago(){
+		if(status == Status.PAGO){
+			return true
+		}
+	}
+	
+	boolean isCancelad0(){
+		if(status == Status.CANCELADO){
+			return true
+		}
+	}
+	
+	String getStatusStr(){
+		if (status == Status.A_PAGAR){
+            return "A Pagar"
+        } else if (status == Status.PAGO){
+            return "Pago"
         } else {
-            return "Cancelada"
+            return "Cancelado"
         }
+	}
+	
+	void setAPagar(){
+        status = Status.A_PAGAR
     }
     
-    void setEmAberto(){
-        status = Status.EM_ABERTO
+    void setPago(){
+        status = Status.PAGO
     }
     
-    void setCancelada(){
-        status = Status.CANCELADA
+    void setCancelado(){
+        status = Status.CANCELADO
     }
-    
-    void setFinalizada(){
-        status = Status.FINALIZADA
-    }
-    
-    boolean addItemProduto(Produto produto, int quantidade){
-        ItemVendaProduto item = new ItemVendaProduto(produto, this, quantidade)
+	
+	boolean addItemProduto(Produto produto, int quantidade){
+        ItemVenda item = new ItemVenda(produto, this, quantidade)
         
-        for(ItemVendaProduto itemNaLista: this.itensProduto){
-            if(itemNaLista.produto.id == produto.id){
+        for(ItemVenda itemNaLista: this.itensProduto){
+            if(itemNaLista.produto.codigo == produto.codigo){
                 return false
             }
         }
         
         if(quantidade < 0){
+            return false
+        }
+
+        if(quantidade > produto.quantidade_in_stock){
             return false
         }
         
@@ -84,41 +86,36 @@ class Venda extends Transacao{
         
         this.itensProduto.add(item)
         
-        this.quantidadeTotalProdutos += item.quantidade
-        this.valorTotalProdutos += item.total
+        this.quantidadeTotal += item.quantidade
+        this.valorTotal += item.preco_total
         
         this.quantidadeTotal += item.quantidade
-        this.valorTotal += item.total
+        this.valorTotal += item.preco_total
         
         return true
     }
-    
-    boolean removeItemProduto(ItemVendaProduto item){
+	
+    boolean removeItemProduto(ItemVenda item){
         if(this.itensProduto.remove(item)){
-            this.quantidadeTotalProdutos -= item.quantidade
-            this.valorTotalProdutos -= item.total
             this.quantidadeTotal -= item.quantidade
-            this.valorTotal -= item.total
+            this.valorTotal -= item.preco_total
             return true
         }else{
             return false
         }
     }
-
-    
+	
     void updateSaldoOfProducts(){
-        for(ItemVendaProduto item : this.itensProduto){
-            item.produto.quantidade -= item.quantidade
-            //item.produto.quantidadeVendido += item.quantidade
-            item.produto.save(flush: true)
+        for(ItemVenda item : this.itensProduto){
+            item.produto.sellFromStock(item.quantidade)
         }
     }
-
-    
-    boolean finalizarVenda(){
-        this.setFinalizada()        
+	
+	boolean finalizarVenda(){
+        this.setPago()        
         this.updateSaldoOfProducts()
+        this.incrementServicos()
         return true
     }
-    
+	
 }

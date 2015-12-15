@@ -36,7 +36,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:field name="preco" class="form-control" onKeyPress="mascara(this, mvalor)" value="${fieldValue(bean: produtoInstance, field: 'preco')}" required="" type="text"/>
+		<g:field name="preco" class="form-control" value="${fieldValue(bean: produtoInstance, field: 'preco')}" required=""/>
 
 		<g:hasErrors bean="${produtoInstance}" field="preco">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -44,15 +44,29 @@
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(bean: produtoInstance, field: 'quantidade', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="quantidade">
-		<g:message code="produto.quantidade.label" default="Quantidade" />
+<div class="form-group ${hasErrors(bean: produtoInstance, field: 'quantidade_in_stock', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="quantidade_in_stock">
+		<g:message code="produto.quantidade_in_stock.label" default="Quantidadeinstock" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:field name="quantidade" class="form-control" type="number" min="0" value="${produtoInstance.quantidade}" required=""/>
+		<g:field name="quantidade_in_stock" class="form-control" type="number" min="0" value="${produtoInstance.quantidade_in_stock}" required=""/>
 
-		<g:hasErrors bean="${produtoInstance}" field="quantidade">
+		<g:hasErrors bean="${produtoInstance}" field="quantidade_in_stock">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: produtoInstance, field: 'quantidade_vendido', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="quantidade_vendido">
+		<g:message code="produto.quantidade_vendido.label" default="Quantidadevendido" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:field name="quantidade_vendido" class="form-control" type="number" min="0" value="${produtoInstance.quantidade_vendido}" required=""/>
+
+		<g:hasErrors bean="${produtoInstance}" field="quantidade_vendido">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>
@@ -85,3 +99,4 @@
 		</g:hasErrors>
 	</div>
 </div>
+

@@ -5,7 +5,7 @@ class ItemVenda {
     Venda venda
     Produto produto
     int quantidade
-    double total
+    double preco_total
     
     static constraints = {
         quantidade(min:0)
@@ -15,6 +15,15 @@ class ItemVenda {
         this.venda = venda
         this.produto = produto
         this.quantidade = quantidade
-        this.total = produto.preco * quantidade
+        this.preco_total = produto.preco * quantidade
+    }
+
+    /**
+     * Seta uma nova quantidade para este ItemVenda, permitindo modificar o objeto mantendo a caracteristica do preço
+     * @param quantidade
+     */
+    void setQuantidade(int quantidade){
+        this.quantidade = quantidade
+        this.preco_total = produto.preco * quantidade
     }
 }

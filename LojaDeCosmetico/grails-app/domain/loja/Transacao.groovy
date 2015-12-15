@@ -1,15 +1,13 @@
 package loja
 
-import loja.Cliente
-
 abstract class Transacao {
-    static belongsTo = [pessoa:Cliente]
-    Date dataTransacao = new Date()
-    int quantidadeTotal = 0
-    double valorTotal = 0
-    
-    static constraints = {
-        pessoa(nullable:true)
+	static	belongsTo = [cliente : Cliente]
+	Date	dataTransacao = new Date()
+	int		quantidadeTotal = 0
+	double	valorTotal = 0
+	
+	static constraints = {
+        cliente(nullable:true)
         dataTransacao()
         quantidadeTotal(editable: false)
         valorTotal(editable: false)
@@ -21,5 +19,5 @@ abstract class Transacao {
     
     void cancelar(){
         
-    }    
+    }
 }
