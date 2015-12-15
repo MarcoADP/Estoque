@@ -1,12 +1,13 @@
 package loja
 
-
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import loja.Produto
 import loja.Cliente
 
+@Secured(['ROLE_FUNCIONARIO'])
 @Transactional(readOnly = true)
 class VendaController {
 
@@ -47,6 +48,8 @@ class VendaController {
             return
         }
 
+        def pessoa = Cliente.findById(params.pessoa.id)
+        vendaInstance.pessoa = pessoa
         vendaInstance.save flush:true
 
         request.withFormat {
@@ -73,6 +76,9 @@ class VendaController {
             respond vendaInstance.errors, view:'edit'
             return
         }
+
+        def pessoa = Cliente.findById(params.pessoa.id)
+        vendaInstance.pessoa = pessoa
 
         vendaInstance.save flush:true
 

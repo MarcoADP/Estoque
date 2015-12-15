@@ -8,7 +8,7 @@
             <g:message code="venda.pessoa.label" default="Pessoa" />
 
         </label>
-        <g:select class="form-control" id="pessoa" name="pessoa.id" from="${loja.Cliente.list()}" optionKey="id" value="${vendaInstance?.pessoa?.id}" class="many-to-one" noSelection="['null': '']"/>
+        <g:select class="form-control" id="pessoa" name="pessoa.id" from="${loja.Cliente.list()}" optionKey="id" value="${vendaInstance?.pessoa?.id}" />
 
     </div>
 </div>
