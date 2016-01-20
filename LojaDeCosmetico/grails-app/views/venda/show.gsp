@@ -28,7 +28,7 @@
                                 </dt>
                                 <dd class="property-value" aria-labelledby="pessoa-label">
 
-                                    <g:link controller="pessoa" action="show" id="${vendaInstance?.pessoa?.id}">
+                                    <g:link controller="cliente" action="show" id="${vendaInstance?.pessoa?.id}">
                                         ${vendaInstance?.pessoa?.encodeAsHTML()}
                                     </g:link>
 

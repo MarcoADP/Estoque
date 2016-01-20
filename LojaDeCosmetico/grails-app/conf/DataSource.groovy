@@ -19,7 +19,7 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/db_loja"
             username = "root"
-            password = "santos2015"
+            password = ""
         }
     }
     test {
@@ -27,7 +27,7 @@ environments {
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/db_loja"
             username = "root"
-            password = "santos2015"
+            password = ""
         }
     }
     production {
@@ -35,7 +35,7 @@ environments {
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/db_loja"
             username = "root"
-            password = "santos2015"
+            password = ""
         }
     }
 }
