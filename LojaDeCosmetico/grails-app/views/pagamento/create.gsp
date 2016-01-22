@@ -12,7 +12,7 @@
 			<g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
 		</div>
 		<div id="create-pagamento" role="main">
-			<h1 class="titulo-crud"><g:message code="default.create.label" args="[entityName]" /></h1>
+			<h1 class="titulo-crud">PAGAMENTO <g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>

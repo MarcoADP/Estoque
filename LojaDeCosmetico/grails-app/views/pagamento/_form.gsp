@@ -1,14 +1,12 @@
 <%@ page import="loja.Pagamento" %>
 
-
-
 <div class="form-group ${hasErrors(bean: pagamentoInstance, field: 'situacao', 'has-error has-feedback')} required">
 	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="situacao">
 		<g:message code="pagamento.situacao.label" default="Situacao" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select name="situacao" class="form-control" from="${pagamentoInstance.constraints.situacao.inList}" required="" value="${pagamentoInstance?.situacao}" valueMessagePrefix="pagamento.situacao"/>
+		<g:select name="situacao" class="form-control" id="disabledSelect" from="${pagamentoInstance.constraints.situacao.inList}" required="" value="${pagamentoInstance?.situacao}" valueMessagePrefix="pagamento.situacao"/>
 
 		<g:hasErrors bean="${pagamentoInstance}" field="situacao">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -36,7 +34,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select id="cliente" name="cliente.id" class="form-control" from="${loja.Cliente.list()}" optionKey="id" required="" value="${pagamentoInstance?.cliente?.id}"/>
+		<g:field name="cliente" class="form-control" value="${fieldValue(bean: pagamentoInstance, field: 'cliente')}" required="" readonly="true"/>
+		%{--<g:select id="cliente" name="cliente.id" class="form-control" from="${loja.Cliente.list()}" optionKey="id" required="" value="${pagamentoInstance?.cliente?.id}" disabled="true"/>--}%
 
 		<g:hasErrors bean="${pagamentoInstance}" field="cliente">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -50,7 +49,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:datePicker name="dataEmissao" precision="day"  value="${pagamentoInstance?.dataEmissao}"  />
+		<g:datePicker name="dataEmissao" precision="day"  value="${pagamentoInstance?.dataEmissao}"/>
 
 		<g:hasErrors bean="${pagamentoInstance}" field="dataEmissao">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -78,11 +77,19 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:field name="preco" class="form-control" value="${fieldValue(bean: pagamentoInstance, field: 'preco')}" required=""/>
+		<g:field name="preco" class="form-control" value="${fieldValue(bean: pagamentoInstance, field: 'preco')}" required="" readonly="true"/>
 
 		<g:hasErrors bean="${pagamentoInstance}" field="preco">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>
 </div>
+
+<script type="text/javascript">
+		$("#dataEmissao_day").attr('disabled','true')
+		$("#dataEmissao_month").attr('disabled','true')
+		$("#dataEmissao_year").attr('disabled','true')
+</script>
+
+adicionar mask preco
 

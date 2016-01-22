@@ -191,7 +191,13 @@ class VendaController {
         }
     }
 
-    
+    @Transactional
+    def pagar(Venda vendaInstance){
+        def preco = vendaInstance.valorTotal
+        preco = preco.round(2)
+        def cliente = vendaInstance.pessoa
+        redirect(controller: "pagamento", action:"create", params: [preco: preco, cliente: cliente])
+    }
 
     protected void notFound() {
         request.withFormat {

@@ -90,11 +90,11 @@
 
 .nav-sidebar .divider {
     *width: 100%;
-    height: 2px;
+    height: 1px;
     *margin: -5px 0 5px;
     overflow: hidden;
-    background-color: #262a33;
-    border-bottom: 1px solid #3e444e;
+    //background-color: #262a33;
+    //border-bottom: 1px solid #3e444e;
 }
 
 .nav-sidebar > .active > a,
@@ -202,6 +202,13 @@ select[id*='_year']:focus {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+select[id*='_day'][disabled],
+select[id*='_month'][disabled],
+select[id*='_year'][disabled] {
+    background-color: #eee;
+    opacity: 1;
 }
 
 

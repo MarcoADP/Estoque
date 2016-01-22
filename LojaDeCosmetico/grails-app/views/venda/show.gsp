@@ -166,11 +166,13 @@
                                 <g:link class="btn btn-lg btn-primary"  action="edit" resource="${vendaInstance}">
                                     <g:message code="default.button.edit.label" default="Edit" />
                                 </g:link>
-                                <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-finalizar-venda">
+                                <g:actionSubmit class="btn btn-lg btn-success" action="pagar"
+                                value="${message(code: 'default.button.pagar.label', default: 'Pagar')}"/>
+                                %{--<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-finalizar-venda">
                                     Finalizar
-                                </button>
+                                </button>--}%
                                 <g:actionSubmit class="btn btn-lg btn-danger" action="cancel" 
-                                value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                                value="${message(code: 'default.button.cancelar_venda.label', default: 'Cancelar Venda')}"
                                 onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                             </fieldset>
                         </g:if>

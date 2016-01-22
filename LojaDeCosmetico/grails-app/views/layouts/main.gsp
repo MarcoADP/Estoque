@@ -37,15 +37,19 @@
             <sec:ifAllGranted roles="ROLE_GERENTE">
                 <li class="${controllerName == 'usuario' ? 'active' : ''}"><g:link controller="usuario"><span class="glyphicon glyphicon-user"></span>Usuários</g:link></li>
             </sec:ifAllGranted>
-            <li class="${controllerName == 'venda' ? 'active' : ''}"><g:link controller="venda"><span class="glyphicon glyphicon-tag"></span>Vendas</g:link></li>
-            <sec:ifAllGranted roles="ROLE_GERENTE">
-                <li class="${controllerName == 'compras' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
-            </sec:ifAllGranted>
-            <li class="${controllerName == 'produto' ? 'active' : ''}"><g:link controller="produto"><span class="glyphicon glyphicon-list-alt"></span>Estoque</g:link></li>
             <li class="${controllerName == 'cliente' ? 'active' : ''}"><g:link controller="cliente"><span class="glyphicon glyphicon-user"></span>Cliente</g:link></li>
+            <li class="nav-sidebar divider"></li>
+            <li class="${controllerName == 'venda' ? 'active' : ''}"><g:link controller="venda"><span class="glyphicon glyphicon-tag"></span>Vendas</g:link></li>
+            <li class="${controllerName == 'pagamento' ? 'active' : ''}"><g:link controller="pagamento"><span class="glyphicon glyphicon-credit-card"></span>Pagamentos</a></g:link></li>
+            <li class="nav-sidebar divider"></li>
+            <li class="${controllerName == 'produto' ? 'active' : ''}"><g:link controller="produto"><span class="glyphicon glyphicon-list-alt"></span>Estoque</g:link></li>
             <li class="${controllerName == 'devolverProduto' ? 'active' : ''}"><g:link controller="devolverProduto"><span class="glyphicon glyphicon-new-window"></span>Devolver produto</g:link></li>
-            <li class="${controllerName == 'retornarCompra' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>
-            <li class="${controllerName == 'pagamentos' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-credit-card"></span>Pagamentos</a></li>
+            <li class="nav-sidebar divider"></li>
+            <sec:ifAllGranted roles="ROLE_GERENTE">
+                <li class="nav-sidebar divider"></li>
+                <li class="${controllerName == 'compras' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
+                <li class="${controllerName == 'retornarCompra' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>
+            </sec:ifAllGranted>
         </ul>
         <ul class="nav nav-sidebar nav-bottom">
             <li><a href="${createLink(uri: '/logout')}"><span class="glyphicon glyphicon-log-out"></span><g:message code="springSecurity.logout.name"/></a></li>
