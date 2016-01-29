@@ -23,7 +23,7 @@ class DevolverProdutoController {
             results = Venda.findByPessoa(pessoa)
             println results.
             results.each {
-                System.out.println(results.quantidadeTotal)
+                System.out.println(results.id)
             }
         }
         //if(results. == 0){
