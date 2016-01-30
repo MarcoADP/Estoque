@@ -10,6 +10,7 @@
         <div class="container-fluid">
             <div class="row">
 
+
                 <section class="content col-xs-12 col-sm-9 col-md-9 col-lg-9">
                     <div id="create-venda" class="scaffold-create" role="main">
                         <h1><g:message code="default.create.label" args="[entityName]" /></h1>

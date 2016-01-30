@@ -1,4 +1,5 @@
 
+
 <%@ page import="loja.Venda" %>
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,7 @@
                                 ${flash.message}
                             </div>
                         </g:if>
+
                         <dl class="dl-horizontal property-list venda">
 
                             <g:if test="${vendaInstance?.pessoa}">
