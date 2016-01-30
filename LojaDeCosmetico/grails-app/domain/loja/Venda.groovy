@@ -17,7 +17,7 @@ class Venda extends Transacao{
     int quantidadeTotal = 0
     double valorTotal = 0
     
-    String pagamento
+    Pagamento pagamento
     
     static constraints = {
         quantidadeTotal(min: 0)

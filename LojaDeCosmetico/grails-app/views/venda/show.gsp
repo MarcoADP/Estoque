@@ -66,14 +66,14 @@
 
                                 </dd>
                             </g:if>
-                            
+
                             <g:if test="${vendaInstance?.pagamento}">
                                 <dt id="valorTotal-label" class="property-label">
                                 <g:message code="venda.Pagamento.label" default="Pagamento" />
                                 </dt>
-                                <dd class="property-value" aria-labelledby="pagamento-label">
-                                    ${vendaInstance?.pagamento}
-                                </dd>
+                                <g:link controller="pagamento" action="show" id="${vendaInstance?.pagamento.id}">
+                                    <dd class="property-value" aria-labelledby="pagamento-label">${formatNumber(number: vendaInstance?.pagamento.id, format: '0000')}</dd>
+                                </g:link>
                             </g:if>
 
                             <g:if test="${vendaInstance?.status}">
@@ -166,14 +166,13 @@
                                 <g:link class="btn btn-lg btn-primary"  action="edit" resource="${vendaInstance}">
                                     <g:message code="default.button.edit.label" default="Edit" />
                                 </g:link>
-                                <g:actionSubmit class="btn btn-lg btn-success" action="pagar"
-                                value="${message(code: 'default.button.pagar.label', default: 'Pagar')}"/>
                                 %{--<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-finalizar-venda">
                                     Finalizar
                                 </button>--}%
                                 <g:actionSubmit class="btn btn-lg btn-danger" action="cancel" 
                                 value="${message(code: 'default.button.cancelar_venda.label', default: 'Cancelar Venda')}"
                                 onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                <g:actionSubmit class="btn btn-lg btn-success" action="pagar" value="${message(code: 'default.button.pagar.label', default: 'Pagar')}"/>
                             </fieldset>
                         </g:if>
                     </g:form>
