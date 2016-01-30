@@ -17,18 +17,13 @@ class DevolverProdutoController {
         params.max = Math.min(max ?: 10, 100)
 
         def results = Venda.list(params)
-        if(params.cliente1 != null) {
-            def pessoa = Cliente.findById(params.cliente1)
-            System.out.println(pessoa.cpf);
-            results = Venda.findByPessoa(pessoa)
-            println results.
-            results.each {
-                System.out.println(results.id)
-            }
+        if (params.dataTransacaoInicio != null){
+            results = Venda.findAllByDataTransacaoBetween(params.dataTransacaoInicio, params.dataTransacaoFim)
         }
-        //if(results. == 0){
-        //    request.message_info = message(code: 'default.search.notfound.message', default: 'Nada encontrado')
-        //}
+
+        if(results.size() == 0){
+            request.message_info = message(code: 'default.search.notfound.message', default: 'Nada encontrado')
+        }
 
         respond results, model:[vendaInstanceCount: Venda.count()]
     }
