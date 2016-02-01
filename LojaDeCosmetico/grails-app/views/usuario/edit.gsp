@@ -27,16 +27,20 @@
 					</ul>
 				</div>
 			</g:hasErrors>
-			<g:form url="[resource:usuarioInstance, action:'update']" method="PUT"  class="form-horizontal">
-				<g:hiddenField name="version" value="${usuarioInstance?.version}" />
+			<div class="row col-lg-6">
+				<g:form url="[resource:usuarioInstance, action:'update']" method="PUT"  class="form-horizontal">
+					<g:hiddenField name="version" value="${usuarioInstance?.version}" />
 
-				<g:render template="form"/>
+					<div class="bs-callout bs-callout-warning">
+						<g:render template="form"/>
+					</div>
 
-				<hr>
-				<fieldset class="buttons">
-					<g:actionSubmit class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
-			</g:form>
+					<hr>
+					<fieldset class="buttons">
+						<g:actionSubmit class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					</fieldset>
+				</g:form>
+			</div>
 		</div>
 	</body>
 </html>

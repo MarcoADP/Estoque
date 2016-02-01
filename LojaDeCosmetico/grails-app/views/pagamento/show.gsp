@@ -20,95 +20,107 @@
 				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
 			<div class="row bs-callout bs-callout-info">
-			<form class="form-horizontal">
+				<form class="form-horizontal">
 
-				<g:if test="${pagamentoInstance}">
-					<div class="form-group">
-						<label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.cliente.label" default="Cliente" /></label>
-						<div class="col-xs-4">
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.cliente.label" default="Cliente" /></label>
+							<div class="col-xs-4">
 
-							<p class="form-control-static" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${pagamentoInstance?.cliente?.id}">${pagamentoInstance?.cliente?.encodeAsHTML()}</g:link></p>
+								<p class="form-control-static" aria-labelledby="cliente-label"><g:link controller="cliente" action="show" id="${pagamentoInstance?.cliente?.id}">${pagamentoInstance?.cliente?.encodeAsHTML()}</g:link></p>
 
+							</div>
 						</div>
-					</div>
-				</g:if>
+					</g:if>
 
-				<g:if test="${pagamentoInstance}">
-					<div class="form-group">
-						<label id="valorTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.valorTotal.label" default="Valor total" /></label>
-						<div class="col-xs-4">
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="valorTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.valorTotal.label" default="Valor total" /></label>
+							<div class="col-xs-4">
 
-							<p class="form-control-static" aria-labelledby="valorTotal-label">
-								R$ ${formatNumber(number: fieldValue(bean: pagamentoInstance, field: "valorTotal"), format: '##0.00')}
-							</p>
+								<p class="form-control-static" aria-labelledby="valorTotal-label">
+									R$ ${formatNumber(number: fieldValue(bean: pagamentoInstance, field: "valorTotal"), format: '##0.00')}
+								</p>
 
+							</div>
 						</div>
-					</div>
-				</g:if>
+					</g:if>
 
-				<g:if test="${pagamentoInstance}">
-					<div class="form-group">
-						<label id="dateCreated-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.dateCreated.label" default="Data de emissao" /></label>
-						<div class="col-xs-4">
-
-							<p class="form-control-static" aria-labelledby="dateCreated-label"><g:formatDate date="${pagamentoInstance?.dateCreated}" /></p>
-
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="id_venda-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.id_venda.label" default="Código venda" /></label>
+							<div class="col-xs-4">
+								<p class="form-control-static" aria-labelledby="id_venda-label">
+									<g:link controller="venda" action="show" id="${pagamentoInstance?.id_venda}">
+										${formatNumber(number: pagamentoInstance?.id_venda, format: '0000')}
+									</g:link>
+								</p>
+							</div>
 						</div>
-					</div>
-				</g:if>
-			
-				<g:if test="${pagamentoInstance}">
-				<div class="form-group">
-					<label id="tipoPagamento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.tipoPagamento.label" default="Tipo de pagamento" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="tipoPagamento-label"><g:fieldValue bean="${pagamentoInstance}" field="tipoPagamento"/></p>
-					
-					</div>
-				</div>
-				</g:if>
+					</g:if>
 
-				<g:if test="${pagamentoInstance}">
-					<div class="form-group">
-						<label id="situacao-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.situacao.label" default="Situacao" /></label>
-						<div class="col-xs-4">
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="dateCreated-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.dateCreated.label" default="Data de emissao" /></label>
+							<div class="col-xs-4">
 
-							<p class="form-control-static" aria-labelledby="situacao-label">
-							%{--<g:fieldValue bean="${pagamentoInstance}" field="situacao"/>--}%
-								<g:if test="${pagamentoInstance.isAVencer()}">
-									<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
-								</g:if>
-								<g:if test="${pagamentoInstance.isEmAberto()}">
-									<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
-								</g:if>
-								<g:if test="${pagamentoInstance.isVencido()}">
-									<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
-								</g:if>
-								<g:if test="${pagamentoInstance.isCancelado()}">
-									<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
-								</g:if>
-								<g:if test="${pagamentoInstance.isPago()}">
-									<span class="label label-success">${pagamentoInstance.getStrSituacao()}</span>
-								</g:if>
-							</p>
+								<p class="form-control-static" aria-labelledby="dateCreated-label"><g:formatDate date="${pagamentoInstance?.dateCreated}" /></p>
 
+							</div>
 						</div>
-					</div>
-				</g:if>
-			
-				<g:if test="${pagamentoInstance.dataVencimento}">
-				<div class="form-group">
-					<label id="dataVencimento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.dataVencimento.label" default="Data de vencimento" /></label>
-					<div class="col-xs-4">
-					
-						<p class="form-control-static" aria-labelledby="dataVencimento-label"><g:formatDate date="${pagamentoInstance?.dataVencimento}" /></p>
-					
-					</div>
-				</div>
-				</g:if>
+					</g:if>
 
-			
-			</form></div>
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="tipoPagamento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.tipoPagamento.label" default="Tipo de pagamento" /></label>
+							<div class="col-xs-4">
+
+								<p class="form-control-static" aria-labelledby="tipoPagamento-label"><g:fieldValue bean="${pagamentoInstance}" field="tipoPagamento"/></p>
+
+							</div>
+						</div>
+					</g:if>
+
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="situacao-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.situacao.label" default="Situacao" /></label>
+							<div class="col-xs-4">
+
+								<p class="form-control-static" aria-labelledby="situacao-label">
+								%{--<g:fieldValue bean="${pagamentoInstance}" field="situacao"/>--}%
+									<g:if test="${pagamentoInstance.isAVencer()}">
+										<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+									</g:if>
+									<g:if test="${pagamentoInstance.isEmAberto()}">
+										<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+									</g:if>
+									<g:if test="${pagamentoInstance.isVencido()}">
+										<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+									</g:if>
+									<g:if test="${pagamentoInstance.isCancelado()}">
+										<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+									</g:if>
+									<g:if test="${pagamentoInstance.isPago()}">
+										<span class="label label-success">${pagamentoInstance.getStrSituacao()}</span>
+									</g:if>
+								</p>
+
+							</div>
+						</div>
+					</g:if>
+
+					<g:if test="${pagamentoInstance.dataVencimento}">
+						<div class="form-group">
+							<label id="dataVencimento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.dataVencimento.label" default="Data de vencimento" /></label>
+							<div class="col-xs-4">
+
+								<p class="form-control-static" aria-labelledby="dataVencimento-label"><g:formatDate date="${pagamentoInstance?.dataVencimento}" /></p>
+
+							</div>
+						</div>
+					</g:if>
+				</form>
+			</div>
 			<hr>
 			<g:form url="[resource:pagamentoInstance, action:'cancel']" method="DELETE">
 				<fieldset class="buttons">

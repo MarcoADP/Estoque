@@ -8,7 +8,6 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
-
         <div class="container-fluid">
             <div class="row">
                 <section class="content col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -20,143 +19,144 @@
                                 ${flash.message}
                             </div>
                         </g:if>
-                        <dl class="dl-horizontal property-list venda">
 
-                            <g:if test="${vendaInstance?.pessoa}">
-                                <dt id="pessoa-label" class="property-label">
-                                <g:message code="venda.pessoa.label" default="Pessoa" />
-                                </dt>
-                                <dd class="property-value" aria-labelledby="pessoa-label">
+                        <div class="row bs-callout bs-callout-info">
+                            <div class="form-horizontal">
 
-                                    <g:link controller="cliente" action="show" id="${vendaInstance?.pessoa?.id}">
-                                        ${vendaInstance?.pessoa?.encodeAsHTML()}
-                                    </g:link>
-
-                                </dd>
-                            </g:if>
-
-                            <g:if test="${vendaInstance?.dataTransacao}">
-                                <dt id="dataTransacao-label" class="property-label">
-                                <g:message code="venda.dataTransacao.label" default="Data Transacao" />
-                                </dt>
-                                <dd class="property-value" aria-labelledby="dataTransacao-label">
-
-                                    <g:formatDate date="${vendaInstance?.dataTransacao}" format="dd/MM/yyyy" />
-
-                                </dd>
-                            </g:if>
-
-                            <g:if test="${vendaInstance?.quantidadeTotal}">
-                                <dt id="quantidadeTotal-label" class="property-label">
-                                <g:message code="venda.quantidadeTotal.label" default="Quantidade Total" />
-                                </dt>
-                                <dd class="property-value" aria-labelledby="quantidadeTotal-label">
-
-                                    <g:fieldValue bean="${vendaInstance}" field="quantidadeTotal"/>
-
-                                </dd>
-                            </g:if>
-
-                            <g:if test="${vendaInstance?.valorTotal}">
-                                <dt id="valorTotal-label" class="property-label">
-                                <g:message code="venda.valorTotal.label" default="Valor Total" />
-                                </dt>
-                                <dd class="property-value" aria-labelledby="valorTotal-label">
-                                    R$ ${formatNumber(number: vendaInstance?.valorTotal, format: '##0.00')}
-
-                                </dd>
-                            </g:if>
-
-                            <g:if test="${vendaInstance?.pagamento}">
-                                <dt id="valorTotal-label" class="property-label">
-                                <g:message code="venda.Pagamento.label" default="Pagamento" />
-                                </dt>
-                                <g:link controller="pagamento" action="show" id="${vendaInstance?.pagamento.id}">
-                                    <dd class="property-value" aria-labelledby="pagamento-label">${formatNumber(number: vendaInstance?.pagamento.id, format: '0000')}</dd>
-                                </g:link>
-                            </g:if>
-
-                            <g:if test="${vendaInstance?.status}">
-                                <dt id="status-label" class="property-label">
-                                <g:message code="venda.status.label" default="Status" />
-                                </dt>
-                                <dd class="property-value" aria-labelledby="status-label">
-
-                                    <g:if test="${vendaInstance.isEmAberto()}">
-                                        <span class="label label-warning">
-                                            ${vendaInstance.getStatusStr()}
-                                        </span>
-                                    </g:if>
-                                    <g:if test="${vendaInstance.isCancelada()}">
-                                        <span class="label label-danger">${vendaInstance.getStatusStr()}</span>
-                                    </g:if>
-                                    <g:if test="${vendaInstance.isFinalizada()}">
-                                        <span class="label label-success">${vendaInstance.getStatusStr()}</span>
-                                    </g:if>
-
-                                </dd>
-                            </g:if>                           
-                        </dl>
-
-
-                        <div class="row margin-top-sm">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <table class="table table-hover table-striped table-responsive">
-                                    <caption class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
-                                            <h2 class="margin-top-zero">Lista de Produtos</h2>
+                                <g:if test="${vendaInstance?.pessoa}">
+                                    <div class="form-group">
+                                        <label id="cliente-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.pessoa.label" default="Pessoa" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="cliente-label">
+                                                <g:link controller="cliente" action="show" id="${vendaInstance?.pessoa?.id}">
+                                                    ${vendaInstance?.pessoa?.encodeAsHTML()}
+                                                </g:link>
+                                            </p>
                                         </div>
-                                    </caption>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Produto
-                                            </th>
-                                            <th>
-                                                Preço do produto
-                                            </th>
-                                            <th>
-                                                Quantidade
-                                            </th>
-                                            <th>
-                                                Total
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <g:each in="${vendaInstance?.itensProduto}" status="i" var="itemInstance">
+                                    </div>
+                                </g:if>
+
+                                <g:if test="${vendaInstance?.dataTransacao}">
+                                    <div class="form-group">
+                                        <label id="dataTransacao-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.dataTransacao.label" default="Data Transacao" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="dataTransacao-label">
+                                                <g:formatDate date="${vendaInstance?.dataTransacao}" format="dd/MM/yyyy" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </g:if>
+
+                                <g:if test="${vendaInstance?.quantidadeTotal}">
+                                    <div class="form-group">
+                                        <label id="quantidadeTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.quantidadeTotal.label" default="Quantidade Total" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="quantidadeTotal-label">
+                                                <g:fieldValue bean="${vendaInstance}" field="quantidadeTotal"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </g:if>
+
+                                <g:if test="${vendaInstance?.valorTotal}">
+                                    <div class="form-group">
+                                        <label id="valorTotal-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.valorTotal.label" default="Valor Total" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="valorTotal-label">
+                                                R$ ${formatNumber(number: vendaInstance?.valorTotal, format: '##0.00')}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </g:if>
+
+                                <g:if test="${vendaInstance?.pagamento}">
+                                    <div class="form-group">
+                                        <label id="pagamento-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.Pagamento.label" default="Pagamento" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="pagamento-label">
+                                                <g:link controller="pagamento" action="show" id="${vendaInstance?.pagamento.id}">
+                                                    ${formatNumber(number: vendaInstance?.pagamento.id, format: '0000')}
+                                                </g:link>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </g:if>
+
+                                <g:if test="${vendaInstance?.status}">
+                                    <div class="form-group">
+                                        <label id="status-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="venda.status.label" default="Status" /></label>
+                                        <div class="col-xs-4">
+                                            <p class="form-control-static" aria-labelledby="status-label">
+                                                <g:if test="${vendaInstance.isEmAberto()}">
+                                                    <span class="label label-warning">
+                                                        ${vendaInstance.getStatusStr()}
+                                                    </span>
+                                                </g:if>
+                                                <g:if test="${vendaInstance.isCancelada()}">
+                                                    <span class="label label-danger">${vendaInstance.getStatusStr()}</span>
+                                                </g:if>
+                                                <g:if test="${vendaInstance.isFinalizada()}">
+                                                    <span class="label label-success">${vendaInstance.getStatusStr()}</span>
+                                                </g:if>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </g:if>
+                            </div>
+
+                            <hr>
+                            <div class="row margin-top-sm">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <table class="table table-hover table-striped table-responsive">
+                                        <caption class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                                                <h2 class="margin-top-zero">Lista de Produtos</h2>
+                                            </div>
+                                        </caption>
+                                        <thead>
                                             <tr>
-                                                <td>${fieldValue(bean: itemInstance.produto, field: "nome")}</td>
-                                                <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance.produto, field: "preco"), format: '##0.00')}</td>
-                                                <td>${fieldValue(bean: itemInstance, field: "quantidade")}</td>
-                                                <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance, field: "total"), format: '##0.00')}</td>
+                                                <th>
+                                                    Produto
+                                                </th>
+                                                <th>
+                                                    Preço do produto
+                                                </th>
+                                                <th>
+                                                    Quantidade
+                                                </th>
+                                                <th>
+                                                    Total
+                                                </th>
                                             </tr>
-                                        </g:each>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="2">
-                                                Total
-                                            </th>
-                                            <th>
-                                                ${vendaInstance?.quantidadeTotalProdutos}
-                                            </th>
-                                            <th colspan="2">
-                                                R$ ${formatNumber(number: vendaInstance?.valorTotalProdutos, format: '##0.00')}
-                                            </th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <g:each in="${vendaInstance?.itensProduto}" status="i" var="itemInstance">
+                                                <tr>
+                                                    <td>${fieldValue(bean: itemInstance.produto, field: "nome")}</td>
+                                                    <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance.produto, field: "preco"), format: '##0.00')}</td>
+                                                    <td>${fieldValue(bean: itemInstance, field: "quantidade")}</td>
+                                                    <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance, field: "total"), format: '##0.00')}</td>
+                                                </tr>
+                                            </g:each>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="2">
+                                                    Total
+                                                </th>
+                                                <th>
+                                                    ${vendaInstance?.quantidadeTotalProdutos}
+                                                </th>
+                                                <th colspan="2">
+                                                    R$ ${formatNumber(number: vendaInstance?.valorTotalProdutos, format: '##0.00')}
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
 
 
                     <g:form url="[resource:vendaInstance, action:'delete']" method="DELETE">
@@ -178,42 +178,6 @@
                     </g:form>
             </div>
         </section>
-
-        <div class="modal fade" id="modal-finalizar-venda" tabindex="-1" role="dialog" aria-labelledby="#modal-finalizar-solicitacao-label" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="modal-title" id="modal-novo-produto-label">
-                            Finalizar venda
-                        </h3>
-                    </div>
-                    <g:form url="[resource:vendaInstance, action:'finalizer']">
-                        <div class="modal-body text-left">
-                            <div class="row">
-                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 ${hasErrors(bean: solicitacaoCompraInstance, field: 'produto', 'error')} required">
-                                    <label for="fornecedor">
-                                        Selecione o método de pagamento
-                                        <span class="required-indicator">*</span>
-                                    </label>
-                                    <select class="form-control" name="pagamento">
-                                        <option value="Dinheiro">Dinheiro</option>
-                                        <option value="Cartão de débito">Cartão de débito</option>
-                                        <option value="Cartão de crédito">Cartão de crédito</option>
-                                        <option value="Cheque">Cheque</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <g:actionSubmit class="btn btn-primary" action="finalizer" 
-                            value="${message(code: 'default.button.complete.label', default: 'Finalizar')}"
-                            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                        </div>
-                    </g:form>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>

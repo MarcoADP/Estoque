@@ -3,11 +3,11 @@
 
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'username', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="username">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="username">
 		<g:message code="usuario.username.label" default="Username" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:textField name="username" class="form-control" required="" value="${usuarioInstance?.username}"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="username">
@@ -17,11 +17,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'password', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="password">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="password">
 		<g:message code="usuario.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:field type="password" name="password" class="form-control" required="" value="${usuarioInstance?.password}"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="password">
@@ -31,11 +31,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'nome', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="nome">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="nome">
 		<g:message code="usuario.nome.label" default="Nome" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:textField name="nome" class="form-control" required="" value="${usuarioInstance?.nome}"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="nome">
@@ -45,11 +45,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'cpf', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cpf">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="cpf">
 		<g:message code="usuario.cpf.label" default="Cpf" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:textField id="cpf" name="cpf" class="form-control" required="" value="${usuarioInstance?.cpf}"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="cpf">
@@ -59,11 +59,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'cargo', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="cargo">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="cargo">
 		<g:message code="usuario.cargo.label" default="Cargo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:select name="cargo" class="form-control" from="${usuarioInstance.constraints.cargo.inList}" required="" value="${usuarioInstance?.cargo}" valueMessagePrefix="usuario.cargo"/>
 
 		<g:hasErrors bean="${usuarioInstance}" field="cargo">
@@ -73,11 +73,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'accountExpired', 'has-error has-feedback')} ">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="accountExpired">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="accountExpired">
 		<g:message code="usuario.accountExpired.label" default="Account Expired" />
 		
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:checkBox name="accountExpired" value="${usuarioInstance?.accountExpired}" />
 
 		<g:hasErrors bean="${usuarioInstance}" field="accountExpired">
@@ -87,11 +87,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'accountLocked', 'has-error has-feedback')} ">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="accountLocked">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="accountLocked">
 		<g:message code="usuario.accountLocked.label" default="Account Locked" />
 		
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:checkBox name="accountLocked" value="${usuarioInstance?.accountLocked}" />
 
 		<g:hasErrors bean="${usuarioInstance}" field="accountLocked">
@@ -101,11 +101,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'enabled', 'has-error has-feedback')} ">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="enabled">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="enabled">
 		<g:message code="usuario.enabled.label" default="Enabled" />
 		
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:checkBox name="enabled" value="${usuarioInstance?.enabled}" />
 
 		<g:hasErrors bean="${usuarioInstance}" field="enabled">
@@ -115,11 +115,11 @@
 </div>
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'passwordExpired', 'has-error has-feedback')} ">
-	<label class="col-sm-3 col-md-2 col-lg-1 control-label" for="passwordExpired">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="passwordExpired">
 		<g:message code="usuario.passwordExpired.label" default="Password Expired" />
 		
 	</label>
-	<div class="col-sm-4">
+	<div class="col-sm-6">
 		<g:checkBox name="passwordExpired" value="${usuarioInstance?.passwordExpired}" />
 
 		<g:hasErrors bean="${usuarioInstance}" field="passwordExpired">
