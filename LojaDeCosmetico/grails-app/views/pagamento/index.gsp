@@ -45,11 +45,11 @@
 		%{--<a href="#list-pagamento" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<div class="page-header" role="navigation">
 			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
-			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			%{--<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>--}%
 		</div>
 
 		<div id="list-pagamento" role="main">
-			<h1 class="titulo-crud"><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1 class="titulo-crud"><g:message code="pagamento.list.label"	 /></h1>
 			<g:if test="${flash.message}">
 				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
@@ -57,37 +57,53 @@
 			<table id="data-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-					
-						<th><g:message code="pagamento.situacao.label" default="Situacao" /></th>
-					
-						<th><g:message code="pagamento.tipoPagamento.label" default="Tipo Pagamento" /></th>
-					
+
 						<th><g:message code="pagamento.cliente.label" default="Cliente" /></th>
-					
-						<th><g:message code="pagamento.dataEmissao.label" default="Data Emissao" /></th>
-					
+
+						<th><g:message code="pagamento.valorTotal.label" default="Valor total" /></th>
+
+						<th><g:message code="pagamento.dateCreated.label" default="Data Emissao" /></th>
+
+						<th><g:message code="pagamento.tipoPagamento.label" default="Tipo Pagamento" /></th>
+
 						<th><g:message code="pagamento.dataVencimento.label" default="Data Vencimento" /></th>
-					
-						<th><g:message code="pagamento.preco.label" default="Preco" /></th>
-					
+
+						<th><g:message code="pagamento.situacao.label" default="Situacao" /></th>
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${pagamentoInstanceList}" status="i" var="pagamentoInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${pagamentoInstance.id}">${fieldValue(bean: pagamentoInstance, field: "situacao")}</g:link></td>
-					
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'} clickable-row" data-href="${createLink(action: 'show', id: pagamentoInstance.id)}">
+
+						<td><g:link action="show" id="${pagamentoInstance?.id}">${fieldValue(bean: pagamentoInstance, field: "cliente")}</g:link></td>
+
+						<td>R$ ${formatNumber(number: fieldValue(bean: pagamentoInstance, field: "valorTotal"), format: '##0.00')}</td>
+
+						<td><g:formatDate date="${pagamentoInstance.dateCreated}" /></td>
+
 						<td>${fieldValue(bean: pagamentoInstance, field: "tipoPagamento")}</td>
-					
-						<td><g:link controller="cliente" action="show" id="${pagamentoInstance?.cliente?.id}">${fieldValue(bean: pagamentoInstance, field: "cliente")}</g:link></td>
-					
-						<td><g:formatDate date="${pagamentoInstance.dataEmissao}" /></td>
-					
+
 						<td><g:formatDate date="${pagamentoInstance.dataVencimento}" /></td>
-					
-						<td>${fieldValue(bean: pagamentoInstance, field: "preco")}</td>
-					
+
+						<td>
+							%{--${fieldValue(bean: pagamentoInstance, field: "situacao")}--}%
+							<g:if test="${pagamentoInstance.isAVencer()}">
+								<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+							<g:if test="${pagamentoInstance.isEmAberto()}">
+								<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+							<g:if test="${pagamentoInstance.isVencido()}">
+								<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+							<g:if test="${pagamentoInstance.isCancelado()}">
+								<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+							<g:if test="${pagamentoInstance.isPago()}">
+								<span class="label label-success">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+						</td>
 					</tr>
 				</g:each>
 				</tbody>

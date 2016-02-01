@@ -21,7 +21,10 @@ class PagamentoController {
     }
 
     def create() {
-        respond new Pagamento(params)
+        Pagamento pag = new Pagamento(params)
+        pag.id_venda = Integer.parseInt(params.vendaID)
+        pag.valorTotal = Float.parseFloat(params.valorTotal)
+        respond pag
     }
 
     @Transactional
@@ -37,6 +40,11 @@ class PagamentoController {
         }
 
         pagamentoInstance.save flush: true
+
+        def venda = Venda.findById(pagamentoInstance.id_venda)
+        venda.setFinalizada()
+        venda.pagamento = pagamentoInstance
+        venda.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -90,6 +98,27 @@ class PagamentoController {
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
+        }
+    }
+
+    @Transactional
+    def cancel(Pagamento pagamentoInstance) {
+
+        if (pagamentoInstance == null) {
+            notFound()
+            return
+        }
+
+        pagamentoInstance.setCancelado()
+
+        pagamentoInstance.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'pagamento.cancelado', args: [message(code: 'pagamento.label', default: 'Pagamento'), pagamentoInstance.id])
+                redirect pagamentoInstance
+            }
+            '*'{ render status: NO_CONTENT }
         }
     }
 

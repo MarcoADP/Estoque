@@ -11,7 +11,6 @@
 		<div class="page-header" role="navigation">
 			<a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
 			<g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
-			<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
 		<div id="edit-pagamento" role="main">
 			<h1 class="titulo-crud"><g:message code="default.edit.label" args="[entityName]" /></h1>
@@ -27,16 +26,20 @@
 					</ul>
 				</div>
 			</g:hasErrors>
-			<g:form url="[resource:pagamentoInstance, action:'update']" method="PUT"  class="form-horizontal">
-				<g:hiddenField name="version" value="${pagamentoInstance?.version}" />
+			<div class="row col-lg-6">
+				<g:form url="[resource:pagamentoInstance, action:'update']" method="PUT"  class="form-horizontal">
+					<g:hiddenField name="version" value="${pagamentoInstance?.version}" />
 
-				<g:render template="form"/>
+					<div class="bs-callout bs-callout-warning">
+						<g:render template="form"/>
+					</div>
 
-				<hr>
-				<fieldset class="buttons">
-					<g:actionSubmit class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
-			</g:form>
+					<hr>
+					<fieldset class="buttons">
+						<g:actionSubmit class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					</fieldset>
+				</g:form>
+			</div>
 		</div>
 	</body>
 </html>

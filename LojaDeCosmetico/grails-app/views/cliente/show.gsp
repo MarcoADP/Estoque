@@ -20,6 +20,7 @@
 			<g:if test="${flash.message}">
 				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
+			<div class="row bs-callout bs-callout-info">
 			<form class="form-horizontal">
 			
 				<g:if test="${clienteInstance}">
@@ -100,6 +101,7 @@
 				</g:if>
 			
 			</form>
+			</div>
 			<hr>
 			<g:form url="[resource:clienteInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

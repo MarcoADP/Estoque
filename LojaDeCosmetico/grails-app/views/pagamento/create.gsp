@@ -12,7 +12,7 @@
 			<g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
 		</div>
 		<div id="create-pagamento" role="main">
-			<h1 class="titulo-crud">PAGAMENTO <g:message code="default.create.label" args="[entityName]" /></h1>
+			<h1 class="titulo-crud"><g:message code="default.pagamento.create.label" /></h1>
 			<g:if test="${flash.message}">
 				<div class="alert alert-success" role="status">${flash.message}</div>
 			</g:if>
@@ -25,14 +25,18 @@
 					</ul>
 				</div>
 			</g:hasErrors>
-			<g:form url="[resource:pagamentoInstance, action:'save']"  class="form-horizontal">
-				<g:render template="form"/>
+			<div class="row col-lg-6">
+				<g:form url="[resource:pagamentoInstance, action:'save']"  class="form-horizontal">
+					<div class="bs-callout bs-callout-primary">
+						<g:render template="form"/>
+					</div>
 
-				<hr>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
+					<hr>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.pagamento.label', default: 'Continuar')}" />
+					</fieldset>
+				</g:form>
+			</div>
 		</div>
 	</body>
 </html>

@@ -20,27 +20,26 @@
                             <ul class="errors" role="alert">
                                 <g:eachError bean="${vendaInstance}" var="error">
                                     <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                    </g:eachError>
-                                    </ul>
-                                </g:hasErrors>
-                                <g:form url="[resource:vendaInstance, action:'save']"
-                                    >
-                                    <fieldset class="form">
+                                </g:eachError>
+                            </ul>
+                        </g:hasErrors>
+
+                        <div class="row col-lg-6">
+                            <g:form url="[resource:vendaInstance, action:'save']">
+                                <div class="bs-callout bs-callout-primary">
                                     <g:render template="form"/>
-                                    </fieldset>
-                                    <fieldset class="buttons">
-                                        <g:submitButton name="create" class="btn btn-lg btn-primary" 
-                                        value="${message(code: 'default.button.create.label', default: 'Create')}"/>
-                                        <g:link controller="index"  resource="${vendaInstance}" 
-                                             class="btn btn-lg btn-danger">
-                                             Cancelar
-                                        </g:link>
-                                    </fieldset>
-                                </g:form>
                                 </div>
-                            </section>
+
+                                <hr>
+                                <fieldset class="buttons">
+                                    <g:submitButton name="create" class="btn btn-lg btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+                                    <g:link controller="index"  resource="${vendaInstance}" class="btn btn-lg btn-danger">Cancelar</g:link>
+                                </fieldset>
+                            </g:form>
                         </div>
                     </div>
-
-            </body>
-        </html>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>
