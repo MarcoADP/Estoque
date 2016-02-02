@@ -3,8 +3,8 @@ package loja
 class Fornecedor {
 
     String nome;
-    String cnpj;
-    String codFor;
+    int cnpj;
+    int codFor;
     String empresa;
 
     static constraints = {
