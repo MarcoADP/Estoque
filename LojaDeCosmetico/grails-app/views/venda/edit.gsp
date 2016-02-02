@@ -11,7 +11,6 @@
 
         <div class="container-fluid">
             <div class="row">
-
                 <section class="content col-xs-12 col-sm-9 col-md-9 col-lg-9">
                     <div id="edit-venda" class="scaffold-edit" role="main">
                         <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
@@ -25,79 +24,80 @@
                             <ul class="errors" role="alert">
                                 <g:eachError bean="${vendaInstance}" var="error">
                                     <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                                    </g:eachError>
+                                </g:eachError>
                             </ul>
                         </g:hasErrors>
-                        <g:form url="[resource:vendaInstance, action:'update']"
-                            method="PUT" >
-                            <g:hiddenField name="version" value="${vendaInstance?.version}" />
-                            <fieldset class="form">
-                                <g:render template="form"/>
-                            </fieldset>
 
-                            <div class="row margin-top-sm">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <table class="table table-hover table-striped table-responsive">
-                                        <caption class="row">
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
-                                                <h2 class="margin-top-zero">Lista de Produtos</h2>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-novo-produto">
-                                                    Adicionar Produto
-                                                </button>
-                                            </div>                                            
-                                        </caption>
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    Produto
-                                                </th>
-                                                <th>
-                                                    Preço do produto
-                                                </th>
-                                                <th>
-                                                    Quantidade
-                                                </th>
-                                                <th colspan="2">
-                                                    Total
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <g:each in="${vendaInstance?.itensProduto}" status="i" var="itemInstance">
+                        <g:form url="[resource:vendaInstance, action:'update']" method="PUT" >
+                            <g:hiddenField name="version" value="${vendaInstance?.version}" />
+                            <div class="bs-callout bs-callout-warning">
+                                <g:render template="form"/>
+
+                                <hr>
+                                <div class="row margin-top-sm">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <table class="table table-hover table-striped table-responsive">
+                                            <caption class="row">
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+                                                    <h2 class="margin-top-zero">Lista de Produtos</h2>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-novo-produto">
+                                                        Adicionar Produto
+                                                    </button>
+                                                </div>
+                                            </caption>
+                                            <thead>
                                                 <tr>
-                                                    <td>${fieldValue(bean: itemInstance.produto, field: "nome")}</td>
-                                                    <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance.produto, field: "preco"), format: '##0.00')}</td>
-                                                    <td>${fieldValue(bean: itemInstance, field: "quantidade")}</td>
-                                                    <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance, field: "total"), format: '##0.00')}</td>
-                                                    <td class="text-right">
-                                                        <g:link controller="venda" action="removeProduct" 
-                                                        id="${vendaInstance.id}" params="[itemId: itemInstance.id]" class="btn btn-sm btn-danger" >
-                                                            Remover
-                                                        </g:link>
-                                                    </td>
+                                                    <th>
+                                                        Produto
+                                                    </th>
+                                                    <th>
+                                                        Preço do produto
+                                                    </th>
+                                                    <th>
+                                                        Quantidade
+                                                    </th>
+                                                    <th colspan="2">
+                                                        Total
+                                                    </th>
                                                 </tr>
-                                            </g:each>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="2">
-                                                    Total
-                                                </th>
-                                                <th>
-                                                    ${vendaInstance?.quantidadeTotalProdutos}
-                                                </th>
-                                                <th colspan="2">
-                                                    R$ ${formatNumber(number: vendaInstance?.valorTotalProdutos, format: '##0.00')}
-                                                </th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <g:each in="${vendaInstance?.itensProduto}" status="i" var="itemInstance">
+                                                    <tr>
+                                                        <td>${fieldValue(bean: itemInstance.produto, field: "nome")}</td>
+                                                        <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance.produto, field: "preco"), format: '##0.00')}</td>
+                                                        <td>${fieldValue(bean: itemInstance, field: "quantidade")}</td>
+                                                        <td>R$ ${formatNumber(number: fieldValue(bean: itemInstance, field: "total"), format: '##0.00')}</td>
+                                                        <td class="text-right">
+                                                            <g:link controller="venda" action="removeProduct"
+                                                            id="${vendaInstance.id}" params="[itemId: itemInstance.id]" class="btn btn-sm btn-danger" >
+                                                                Remover
+                                                            </g:link>
+                                                        </td>
+                                                    </tr>
+                                                </g:each>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="2">
+                                                        Total
+                                                    </th>
+                                                    <th>
+                                                        ${vendaInstance?.quantidadeTotalProdutos}
+                                                    </th>
+                                                    <th colspan="2">
+                                                        R$ ${formatNumber(number: vendaInstance?.valorTotalProdutos, format: '##0.00')}
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
 
-
+                            <hr>
                             <fieldset class="buttons">
                                 <g:actionSubmit class="btn btn-lg btn-primary" action="update" 
                                 value="${message(code: 'default.button.update.label', default: 'Update')}" />
