@@ -74,4 +74,22 @@ class Pagamento {
     void setEmAberto(){
         situacao = SituacaoPagamento.EM_ABERTO
     }
+
+    boolean efetuarPagamento(Venda venda, double valor_total){
+        if (venda == null){
+            return false
+        }
+        if (venda.hasErrors()){
+            return false
+        }
+        if (valor_total < 0.0){
+            return false;
+        }
+        venda.setFinalizada()
+        venda.setPagamento(this)
+        venda.save flush: true
+
+        situacao.pagar(valor_total)
+        return true
+    }
 }
