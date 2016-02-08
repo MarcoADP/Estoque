@@ -127,6 +127,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['ROLE_FUNCIONARIO'],
 	'/index':           ['ROLE_FUNCIONARIO'],
 	'/index.gsp':       ['ROLE_FUNCIONARIO'],
+    '/ajuda':           ['permitAll'],
+    '/ajuda.gsp':       ['permitAll'],
 	'/assets/**':       ['permitAll'],
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],

@@ -52,21 +52,6 @@
 		</g:hasErrors>
 	</div>
 </div>
-%{--<g:hiddenField name="dataEmissao" value="${pagamentoInstance?.dataEmissao}" />--}%
-
-%{--<div class="form-group ${hasErrors(bean: pagamentoInstance, field: 'situacao', 'has-error has-feedback')} required">--}%
-	%{--<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="situacao">--}%
-		%{--<g:message code="pagamento.situacao.label" default="Situacao" />--}%
-		%{--<span class="required-indicator">*</span>--}%
-	%{--</label>--}%
-	%{--<div class="col-sm-6">--}%
-		%{--<g:select name="situacao" class="form-control" id="disabledSelect" from="${pagamentoInstance.constraints.situacao.inList}" required="" value="${pagamentoInstance?.situacao}" valueMessagePrefix="pagamento.situacao"/>--}%
-
-		%{--<g:hasErrors bean="${pagamentoInstance}" field="situacao">--}%
-			%{--<span class="glyphicon glyphicon-remove form-control-feedback"></span>--}%
-		%{--</g:hasErrors>--}%
-	%{--</div>--}%
-%{--</div>--}%
 
 <g:hiddenField name="situacao" value="${fieldValue(bean: pagamentoInstance, field: 'situacao')}" />
 

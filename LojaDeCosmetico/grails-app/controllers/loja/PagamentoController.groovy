@@ -13,7 +13,26 @@ class PagamentoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: Pagamento.count(), 100)
-        respond Pagamento.list(params), model: [pagamentoInstanceCount: Pagamento.count()]
+
+        def results = Pagamento.list(params)
+        if (params.dataEmissaoInicio != null){
+            def criteria = Pagamento.createCriteria()
+            results = criteria.list {
+                cliente {
+                    like ("nome", "%"+params.cliente+"%")
+                }
+                between("dateCreated", params.dataEmissaoInicio, params.dataEmissaoFim)
+                if (params.tipoPagamento != "Todos"){
+                    eq("tipoPagamento", params.tipoPagamento)
+                }
+            }
+        }
+
+        if(results.size() == 0){
+            flash.message = message(code: 'default.search.notfound.message', default: 'Nenhum resultado encontrado.')
+        }
+
+        respond results, model: [pagamentoInstanceCount: Pagamento.count()]
     }
 
     def show(Pagamento pagamentoInstance) {

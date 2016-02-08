@@ -44,12 +44,14 @@
             <li class="nav-sidebar divider"></li>
             <li class="${controllerName == 'produto' ? 'active' : ''}"><g:link controller="produto"><span class="glyphicon glyphicon-list-alt"></span>Estoque</g:link></li>
             <li class="${controllerName == 'devolverProduto' ? 'active' : ''}"><g:link controller="devolverProduto"><span class="glyphicon glyphicon-new-window"></span>Devolver produto</g:link></li>
-            <li class="nav-sidebar divider"></li>
             <sec:ifAllGranted roles="ROLE_GERENTE">
                 <li class="nav-sidebar divider"></li>
-                <li class="${controllerName == 'compras' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
+                <li class="${controllerName == 'fornecedor' ? 'active' : ''}"><g:link controller="fornecedor"><span class="glyphicon glyphicon-globe"></span>Fornecedor</g:link></li>
+                <li class="${controllerName == 'pedido' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
                 <li class="${controllerName == 'retornarCompra' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>
             </sec:ifAllGranted>
+            <li class="nav-sidebar divider"></li>
+            <li><a href="${createLink(uri: '/ajuda')}"><span class="glyphicon glyphicon-question-sign"></span>Ajuda</a></li>
         </ul>
         <ul class="nav nav-sidebar nav-bottom">
             <li><a href="${createLink(uri: '/logout')}"><span class="glyphicon glyphicon-log-out"></span><g:message code="springSecurity.logout.name"/></a></li>
