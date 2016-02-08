@@ -25,14 +25,18 @@
 					</ul>
 				</div>
 			</g:hasErrors>
-			<g:form url="[resource:fornecedorInstance, action:'save']"  class="form-horizontal">
-				<g:render template="form"/>
+			<div class="row col-lg-6">
+				<g:form url="[resource:fornecedorInstance, action:'save']"  class="form-horizontal">
+					<div class="bs-callout bs-callout-primary">
+						<g:render template="form"/>
+					</div>
 
-				<hr>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
+					<hr>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					</fieldset>
+				</g:form>
+			</div>
 		</div>
 	</body>
 </html>

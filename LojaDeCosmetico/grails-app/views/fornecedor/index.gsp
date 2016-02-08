@@ -57,29 +57,29 @@
 			<table id="data-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-					
+
 						<th><g:message code="fornecedor.nome.label" default="Nome" /></th>
-					
+
 						<th><g:message code="fornecedor.cnpj.label" default="Cnpj" /></th>
-					
+
 						<th><g:message code="fornecedor.codFor.label" default="Cod For" /></th>
-					
+
 						<th><g:message code="fornecedor.empresa.label" default="Empresa" /></th>
-					
+
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${fornecedorInstanceList}" status="i" var="fornecedorInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+
 						<td><g:link action="show" id="${fornecedorInstance.id}">${fieldValue(bean: fornecedorInstance, field: "nome")}</g:link></td>
-					
+
 						<td>${fieldValue(bean: fornecedorInstance, field: "cnpj")}</td>
-					
+
 						<td>${fieldValue(bean: fornecedorInstance, field: "codFor")}</td>
-					
+
 						<td>${fieldValue(bean: fornecedorInstance, field: "empresa")}</td>
-					
+
 					</tr>
 				</g:each>
 				</tbody>
