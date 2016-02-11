@@ -1,18 +1,16 @@
 package loja
 
+import loja.situacao.*
+
 class Pagamento {
-    enum SituacaoPagamento{
-        A_VENCER, CANCELADO, PAGO, VENCIDO, EM_ABERTO
-    }
 
     int id_venda
     float valorTotal
     Date dateCreated
     Date dataVencimento
     Cliente cliente
-    SituacaoPagamento situacao = SituacaoPagamento.EM_ABERTO
+    PagamentoState state = PagamentoState.EM_ABERTO
     String tipoPagamento
-
 
     static constraints = {
         valorTotal scale: 2, min: 0F
@@ -26,56 +24,50 @@ class Pagamento {
     }
 
     boolean isAVencer(){
-        return situacao == SituacaoPagamento.A_VENCER
+        return state == PagamentoState.A_VENCER
     }
 
     boolean isCancelado(){
-        return situacao == SituacaoPagamento.CANCELADO
+        return state == PagamentoState.CANCELADO
     }
 
     boolean isPago(){
-        return situacao == SituacaoPagamento.PAGO
+        return state == PagamentoState.PAGO
     }
 
     boolean isVencido(){
-        return situacao == SituacaoPagamento.VENCIDO
+        return state == PagamentoState.VENCIDO
     }
 
     boolean isEmAberto(){
-        return situacao == SituacaoPagamento.EM_ABERTO
+        return state == PagamentoState.EM_ABERTO
     }
 
     String getStrSituacao(){
-        switch (situacao){
-            case SituacaoPagamento.CANCELADO: return "Cancelado"
-            case SituacaoPagamento.VENCIDO: return "Vencido"
-            case SituacaoPagamento.A_VENCER: return "A vencer"
-            case SituacaoPagamento.PAGO: return "Pago"
-            case SituacaoPagamento.EM_ABERTO: return "Em Aberto"
-        }
+        return state.getStrSituacao()
     }
 
     void setAVencer(){
-        situacao = SituacaoPagamento.A_VENCER
+        state = PagamentoState.A_VENCER
     }
 
     void setCancelado(){
-        situacao = SituacaoPagamento.CANCELADO
+        state = PagamentoState.CANCELADO
     }
 
     void setPago(){
-        situacao = SituacaoPagamento.PAGO
+        state = PagamentoState.PAGO
     }
 
     void setVencido(){
-        situacao = SituacaoPagamento.VENCIDO
+        state = PagamentoState.VENCIDO
     }
 
     void setEmAberto(){
-        situacao = SituacaoPagamento.EM_ABERTO
+        state = PagamentoState.EM_ABERTO
     }
 
-    boolean efetuarPagamento(Venda venda, double valor_total){
+    boolean efetuarPagamento(Venda venda, float valor_total){
         if (venda == null){
             return false
         }
@@ -89,7 +81,7 @@ class Pagamento {
         venda.setPagamento(this)
         venda.save flush: true
 
-        situacao.pagar(valor_total)
+        state = state.pagar(valor_total, this)
         return true
     }
 }

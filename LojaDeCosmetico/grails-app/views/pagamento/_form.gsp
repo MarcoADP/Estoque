@@ -53,7 +53,7 @@
 	</div>
 </div>
 
-<g:hiddenField name="situacao" value="${fieldValue(bean: pagamentoInstance, field: 'situacao')}" />
+<g:hiddenField name="state" value="${fieldValue(bean: pagamentoInstance, field: 'state')}" />
 
 <div class="form-group ${hasErrors(bean: pagamentoInstance, field: 'tipoPagamento', 'has-error has-feedback')} required">
 	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="tipoPagamento">
@@ -61,7 +61,12 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-6">
-		<g:select name="tipoPagamento" class="form-control" from="${pagamentoInstance.constraints.tipoPagamento.inList}" required="" value="${pagamentoInstance?.tipoPagamento}" valueMessagePrefix="pagamento.tipoPagamento"/>
+		%{--<g:select name="tipoPagamento" class="form-control" from="${pagamentoInstance.constraints.tipoPagamento.inList}" required="" value="${pagamentoInstance?.tipoPagamento}" valueMessagePrefix="pagamento.tipoPagamento"/>--}%
+
+		<g:radioGroup name="tipoPagamento" values="${pagamentoInstance.constraints.tipoPagamento.inList}" labels="${pagamentoInstance.constraints.tipoPagamento.inList}">
+			<div class="radio"><label>${it.radio} <g:message code="${it.label}"/></label></div>
+		</g:radioGroup>
+
 
 		<g:hasErrors bean="${pagamentoInstance}" field="tipoPagamento">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -75,6 +80,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-6">
+		<br>
 		<g:datePicker name="dataVencimento" precision="day" value="${pagamentoInstance?.dataVencimento}"  />
 
 		<g:hasErrors bean="${pagamentoInstance}" field="dataVencimento">

@@ -1,6 +1,7 @@
 
 
 <%@ page import="loja.Pagamento" %>
+<%@ page import="loja.situacao.PagamentoState" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -64,25 +65,39 @@
 					</div>
 					<div class="form-group form-group-data col-xs-6 col-sm-5 col-md-4 col-lg-2 ${hasErrors(bean: pagamentoInstance, field: 'tipoPagamento', 'error')} required">
 						<label for="tipoPagamento">
-							<g:message code="pagamento.cliente.search.label" default="Tipo de pagamento" />
+							<g:message code="pagamento.tipoPagamento.search.label" default="Tipo de pagamento" />
 						</label><br/>
 						<g:select name="tipoPagamento" class="form-control" from="${["Todos", "Dinheiro", "Cartão de Crédito à Vista", "Cartão de Crédito à Prazo"]}" value="${params.tipoPagamento}"/>
+					</div>
+					<div class="form-group form-group-data col-xs-6 col-sm-5 col-md-4 col-lg-2 ${hasErrors(bean: pagamentoInstance, field: 'state', 'error')} required">
+						<label for="state">
+							<g:message code="pagamento.state.search.label" default="Situação" />
+						</label><br/>
+						%{--<g:select name="situacao" class="form-control" from="${PagamentoState.values()}" optionValue="strSituacao"/>--}%
+						<select name="situacao" class="form-control" id="situacao">
+							<option value="Todos">Todos</option>
+							<option value="A_VENCER">A Vencer</option>
+							<option value="CANCELADO">Cancelado</option>
+							<option value="EM_ABERTO">Em Aberto</option>
+							<option value="VENCIDO">Vencido</option>
+							<option value="PAGO">Pago</option>
+						</select>
 					</div>
 					<div class="form-group form-group-data col-xs-6 col-sm-5 col-md-4 col-lg-3 ${hasErrors(bean: pagamentoInstance, field: 'dataEmissao', 'error')} required">
 						<label for="dataEmissao">
 							<g:message code="pagamento.dataEmissao.search.label" default="Data Emissão entre" />
 						</label><br/>
-						<g:datePicker name="dataEmissaoInicio" precision="day" value="${params.dataEmissaoInicio}"  />
+						<g:datePicker name="dataEmissaoInicio" precision="day" value="${params.dataEmissaoInicio}" relativeYears="[-10..10]"/>
 						<br/><br/>
-						<g:datePicker name="dataEmissaoFim" precision="day" value="${params.dataEmissaoFim}"  />
+						<g:datePicker name="dataEmissaoFim" precision="day" value="${params.dataEmissaoFim}" relativeYears="[-10..10]"/>
 					</div>
 					<div class="form-group form-group-data col-xs-6 col-sm-5 col-md-4 col-lg-3 ${hasErrors(bean: pagamentoInstance, field: 'dataVencimento', 'error')} required">
 						<label for="dataVencimento">
 							<g:message code="pagamento.dataVencimento.search.label" default="Data de vencimento entre" />
 						</label><br/>
-						<g:datePicker name="dataVencimentoInicio" precision="day" value="${params.dataVencimentoInicio}"  />
+						<g:datePicker name="dataVencimentoInicio" precision="day" value="${params.dataVencimentoInicio}" relativeYears="[-10..10]" />
 						<br/><br/>
-						<g:datePicker name="dataVencimentoFim" precision="day" value="${params.dataVencimentoFim}"  />
+						<g:datePicker name="dataVencimentoFim" precision="day" value="${params.dataVencimentoFim}" relativeYears="[-10..10]" />
 					</div>
 				</div>
 				<div class="form-actions">
@@ -122,7 +137,7 @@
 
 						<td><g:formatDate date="${pagamentoInstance.dataVencimento}" /></td>
 
-						<td>
+						<td class="text-center">
 							%{--${fieldValue(bean: pagamentoInstance, field: "situacao")}--}%
 							<g:if test="${pagamentoInstance.isAVencer()}">
 								<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
