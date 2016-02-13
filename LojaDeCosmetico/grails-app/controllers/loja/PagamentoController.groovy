@@ -1,6 +1,7 @@
 package loja
 
 import grails.plugin.springsecurity.annotation.Secured
+import loja.situacao.PagamentoState
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -16,14 +17,21 @@ class PagamentoController {
 
         def results = Pagamento.list(params)
         if (params.dataEmissaoInicio != null){
+            params.dataEmissaoFim = params.dataEmissaoFim.plus(1)
             def criteria = Pagamento.createCriteria()
             results = criteria.list {
                 cliente {
                     like ("nome", "%"+params.cliente+"%")
                 }
                 between("dateCreated", params.dataEmissaoInicio, params.dataEmissaoFim)
+                between("dataVencimento", params.dataVencimentoInicio, params.dataVencimentoFim)
+
                 if (params.tipoPagamento != "Todos"){
                     eq("tipoPagamento", params.tipoPagamento)
+                }
+                if (params.situacao != "Todos"){
+                    params.situacao = PagamentoState.valueOf(params.situacao)
+                    eq("state", params.situacao)
                 }
             }
         }
