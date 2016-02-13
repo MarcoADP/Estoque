@@ -12,12 +12,12 @@ class Produto {
     static constraints = {
         codigo unique: true
         nome blank: false
-        preco blank: false, min: 0F
-        quantidade blank: false, min: 0
-        dataFabricacao blank: false, validator: {val, obj ->
+        preco /*blank: false,*/ min: 0F
+        quantidade /*blank: false,*/ min: 0
+        dataFabricacao /*blank: false,*/ validator: {val, obj ->
             val.before(obj.dataVencimento)
         }
-        dataVencimento blank: false
+        /*dataVencimento /*blank: false*/
     }
 
     String toString(){
