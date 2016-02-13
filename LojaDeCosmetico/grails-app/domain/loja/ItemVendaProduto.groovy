@@ -10,7 +10,7 @@ class ItemVendaProduto {
     double total
     
     static constraints = {
-        quantidade(min:0)
+        //quantidade(min:0)
     }
     
     ItemVendaProduto(Produto produto, Venda venda , int quantidade){
