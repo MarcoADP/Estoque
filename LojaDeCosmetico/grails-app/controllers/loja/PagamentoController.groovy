@@ -12,6 +12,8 @@ class PagamentoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def pdfRenderingService
+
     def index(Integer max) {
         params.max = Math.min(max ?: Pagamento.count(), 100)
 
@@ -41,6 +43,12 @@ class PagamentoController {
         }
 
         respond results, model: [pagamentoInstanceCount: Pagamento.count()]
+    }
+
+    def gerarPDF(){
+        def pagamento = Pagamento.findById(params.id_pag)
+        def data = new Date().format("dd/MM/yyyy-HH:mm:s")
+        renderPdf(template: '/pagamento/comprovante', model: [pagamento: pagamento], filename: "comprovante_"+data+".pdf")
     }
 
     def show(Pagamento pagamentoInstance) {

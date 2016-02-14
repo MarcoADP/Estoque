@@ -79,7 +79,7 @@
 		<g:message code="pagamento.dataVencimento.label" default="Data Vencimento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-6">
+	<div class="col-sm-9">
 		<br>
 		<g:datePicker name="dataVencimento" precision="day" value="${pagamentoInstance?.dataVencimento}"  />
 

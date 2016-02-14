@@ -101,7 +101,8 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<g:actionSubmit class="btn btn-lg btn-primary" action="index" value="${message(code: 'default.button.search.label', default: 'Search')}" />
+					<g:actionSubmit class="btn btn-lg btn-primary" action="index" value="${message(code: 'default.button.search.label', default: 'Buscar')}" />
+					%{--<g:link action="index"><button class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-search padr5"></i>${message(code: 'default.button.search.label', default: 'Search')}</button></g:link>--}%
 				</div>
 			</g:form>
 
@@ -109,17 +110,19 @@
 				<thead>
 					<tr>
 
-						<th><g:message code="pagamento.cliente.label" default="Cliente" /></th>
+						<th class="text-center"><g:message code="pagamento.cliente.label" default="Cliente" /></th>
 
-						<th><g:message code="pagamento.valorTotal.label" default="Valor total" /></th>
+						<th class="text-center"><g:message code="pagamento.valorTotal.label" default="Valor total" /></th>
 
-						<th><g:message code="pagamento.dateCreated.label" default="Data Emissao" /></th>
+						<th class="text-center"><g:message code="pagamento.dateCreated.label" default="Data Emissao" /></th>
 
-						<th><g:message code="pagamento.tipoPagamento.label" default="Tipo Pagamento" /></th>
+						<th class="text-center"><g:message code="pagamento.tipoPagamento.label" default="Tipo Pagamento" /></th>
 
-						<th><g:message code="pagamento.dataVencimento.label" default="Data Vencimento" /></th>
+						<th class="text-center"><g:message code="pagamento.state.label" default="Situacao" /></th>
 
-						<th><g:message code="pagamento.situacao.label" default="Situacao" /></th>
+						<th class="text-center"><g:message code="pagamento.dataVencimento.label" default="Data Vencimento" /></th>
+
+						<th class="text-center">Ações</th>
 
 					</tr>
 				</thead>
@@ -127,32 +130,43 @@
 				<g:each in="${pagamentoInstanceList}" status="i" var="pagamentoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'} clickable-row" data-href="${createLink(action: 'show', id: pagamentoInstance.id)}">
 
-						<td><g:link action="show" id="${pagamentoInstance?.id}">${fieldValue(bean: pagamentoInstance, field: "cliente")}</g:link></td>
+						<td class="text-center"><g:link action="show" id="${pagamentoInstance?.id}">${fieldValue(bean: pagamentoInstance, field: "cliente")}</g:link></td>
 
-						<td>R$ ${formatNumber(number: fieldValue(bean: pagamentoInstance, field: "valorTotal"), format: '##0.00')}</td>
+						<td class="text-center">R$ ${formatNumber(number: fieldValue(bean: pagamentoInstance, field: "valorTotal"), format: '##0.00')}</td>
 
-						<td><g:formatDate date="${pagamentoInstance.dateCreated}" /></td>
+						<td class="text-center"><g:formatDate date="${pagamentoInstance.dateCreated}" /></td>
 
-						<td>${fieldValue(bean: pagamentoInstance, field: "tipoPagamento")}</td>
-
-						<td><g:formatDate date="${pagamentoInstance.dataVencimento}" /></td>
+						<td class="text-center">${fieldValue(bean: pagamentoInstance, field: "tipoPagamento")}</td>
 
 						<td class="text-center">
-							%{--${fieldValue(bean: pagamentoInstance, field: "situacao")}--}%
+						%{--${fieldValue(bean: pagamentoInstance, field: "situacao")}--}%
 							<g:if test="${pagamentoInstance.isAVencer()}">
 								<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
 							</g:if>
 							<g:if test="${pagamentoInstance.isEmAberto()}">
-								<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+								<span class="label label-info">${pagamentoInstance.getStrSituacao()}</span>
 							</g:if>
 							<g:if test="${pagamentoInstance.isVencido()}">
 								<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
 							</g:if>
 							<g:if test="${pagamentoInstance.isCancelado()}">
-								<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+								<span class="label label-default">${pagamentoInstance.getStrSituacao()}</span>
 							</g:if>
 							<g:if test="${pagamentoInstance.isPago()}">
 								<span class="label label-success">${pagamentoInstance.getStrSituacao()}</span>
+							</g:if>
+						</td>
+
+						<td class="text-center"><g:formatDate date="${pagamentoInstance.dataVencimento}" /></td>
+
+
+						<td class="text-center">
+							%{--<g:link action="show" id="${pagamentoInstance?.id}"><button class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-eye-open padr5"></i>Visualizar</button></g:link>--}%
+							<g:link action="edit" id="${pagamentoInstance?.id}"><button class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit padr5"></i>Editar</button></g:link>
+							<g:if test="${pagamentoInstance.state.habilitarImpressao()}">
+								<g:link action="gerarPDF" params="[id_pag: pagamentoInstance?.id]">
+									<button class="btn btn-info btn-xs"><i class="glyphicon glyphicon-download-alt padr5"></i>Salvar Comprovante</button>
+								</g:link>
 							</g:if>
 						</td>
 					</tr>

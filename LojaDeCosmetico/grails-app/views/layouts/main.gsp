@@ -21,8 +21,8 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="sidebar">
+<div class="page-container">
+    <div class="sidebar-menu">
         <div class="sidebar-header">
             <div class="logo">
                 <a href="${createLink(uri: '/')}">Controle de Estoque</a>
@@ -57,10 +57,10 @@
             <li><a href="${createLink(uri: '/logout')}"><span class="glyphicon glyphicon-log-out"></span><g:message code="springSecurity.logout.name"/></a></li>
         </ul>
     </div>
-    <div class="page-body">
-        <div class="row main">
+    <div class="main-content">
+
             <g:layoutBody/>
-        </div>
+
     </div>
 </div>
 

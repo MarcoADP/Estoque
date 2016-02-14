@@ -24,6 +24,7 @@ grails.mime.types = [ // the first one is the default format
     html:          ['text/html','application/xhtml+xml'],
     js:            'text/javascript',
     json:          ['application/json', 'text/json'],
+    pdf:            'application/pdf',
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
     text:          'text/plain',
@@ -92,6 +93,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
+        //grails.serverURL = "http://localhost:8080/LojaDeCosmetico"
     }
 }
 

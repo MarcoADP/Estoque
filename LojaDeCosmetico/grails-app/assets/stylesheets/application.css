@@ -13,6 +13,30 @@
 *= require_self
 */
 
+
+
+html,
+body {
+    height: 100%;
+    position: relative;
+}
+
+.page-container {
+    width: 100%;
+    display: table;
+    height: 100%;
+    table-layout: fixed;
+}
+@media screen and (max-width: 768px) {
+    .page-container {
+        display: block;
+    }
+}
+.page-container.loaded .page-container {
+    position: relative;
+}
+
+
 /*
  * Global add-ons
  */
@@ -31,8 +55,86 @@
 }
 
 /*
+ * Sidebar-menu
+ */
+
+.page-container .sidebar-menu {
+    display: table-cell;
+    vertical-align: top;
+    width: 280px;
+    position: relative;
+    z-index: 100;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #303642;
+    color: #aaabae;
+    font-size: 13px;
+    border-right: 1px solid #3e444e;
+}
+@media screen and (max-width: 767px) {
+    .page-container .sidebar-menu {
+        display: block;
+    }
+}
+
+.page-container .main-content {
+    position: relative;
+    /*
+  float: left;
+          z-index: 2;
+  */
+    display: table-cell;
+    vertical-align: top;
+    padding: 20px 20px 30px 30px;
+    background: #ffffff;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 767px) {
+    .page-container .main-content {
+        display: block;
+    }
+}
+
+.main-content .page-header {
+    margin-top: 0;
+}
+
+.sidebar-menu .sidebar-header {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar-menu .sidebar-header .logo a {
+    color: #aaabae;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-menu .sidebar-header .logo a:hover {
+    text-decoration: none;
+}
+
+.sidebar-menu .sidebar-header .logo a:active {
+    text-decoration: none;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+
+/*
  * Sidebar
  */
+
 
 /* Hide for mobile, show later */
 .sidebar {
@@ -389,3 +491,15 @@ select[id*='_year'][disabled] {
 .panel-warning {
     border-color: #ebd362;
 }
+
+
+.padr5 {
+    padding-right: 5px;
+}
+
+
+
+
+
+
+

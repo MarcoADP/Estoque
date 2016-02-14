@@ -315,8 +315,25 @@ function memail(v){
 	return v;
 }
 
-jQuery(document).ready(function($) {
+/*jQuery(document).ready(function($) {
 	$(".clickable-row").click(function() {
 		window.document.location = $(this).data("href");
+	});
+});*/
+
+$(document).ready(function()
+{
+	$('#data-table tr').each(function(i,e)
+	{
+		$(e).children('td:not(:last)').click(function()
+		{
+			//here we are working on a td element, that's why we need
+			//to refer to its parent (tr) in order to find the <a> element
+			var href = $(this).closest("tr").find("a").attr("href");
+			if(href)
+			{
+				window.location = href;
+			}
+		});
 	});
 });

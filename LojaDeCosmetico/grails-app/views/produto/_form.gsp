@@ -63,7 +63,7 @@
 		<g:message code="produto.dataFabricacao.label" default="Data Fabricacao" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-6">
+	<div class="col-sm-9">
 		<g:datePicker name="dataFabricacao" precision="day"  value="${produtoInstance?.dataFabricacao}"  />
 
 		<g:hasErrors bean="${produtoInstance}" field="dataFabricacao">
@@ -77,7 +77,7 @@
 		<g:message code="produto.dataVencimento.label" default="Data Vencimento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-6">
+	<div class="col-sm-9">
 		<g:datePicker name="dataVencimento" precision="day"  value="${produtoInstance?.dataVencimento}"  />
 
 		<g:hasErrors bean="${produtoInstance}" field="dataVencimento">

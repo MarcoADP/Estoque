@@ -21,6 +21,16 @@
 			</g:if>
 			<div class="row bs-callout bs-callout-info">
 				<form class="form-horizontal">
+					<g:if test="${pagamentoInstance}">
+						<div class="form-group">
+							<label id="id-label" class="col-sm-3 col-md-2 col-lg-1 control-label"><g:message code="pagamento.id.label" default="Código" /></label>
+							<div class="col-xs-4">
+								<p class="form-control-static" aria-labelledby="cliente-label">
+									${formatNumber(number: pagamentoInstance?.id, format: '0000')}
+								</p>
+							</div>
+						</div>
+					</g:if>
 
 					<g:if test="${pagamentoInstance}">
 						<div class="form-group">
@@ -92,13 +102,13 @@
 										<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
 									</g:if>
 									<g:if test="${pagamentoInstance.isEmAberto()}">
-										<span class="label label-warning">${pagamentoInstance.getStrSituacao()}</span>
+										<span class="label label-info">${pagamentoInstance.getStrSituacao()}</span>
 									</g:if>
 									<g:if test="${pagamentoInstance.isVencido()}">
 										<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
 									</g:if>
 									<g:if test="${pagamentoInstance.isCancelado()}">
-										<span class="label label-danger">${pagamentoInstance.getStrSituacao()}</span>
+										<span class="label label-default">${pagamentoInstance.getStrSituacao()}</span>
 									</g:if>
 									<g:if test="${pagamentoInstance.isPago()}">
 										<span class="label label-success">${pagamentoInstance.getStrSituacao()}</span>
@@ -128,10 +138,15 @@
 					<g:if test="${pagamentoInstance.isEmAberto()}">
 						<a href="#CancelModal" class="btn btn-danger" data-toggle="modal"><g:message code="pagamento.button.cancelar" default="Cancelar" /></a>
 					</g:if>
-					%{--<a href="#DeleteModal" class="btn btn-danger" data-toggle="modal"><g:message code="default.button.delete.label" default="Delete" /></a>--}%
+
+					<g:if test="${pagamentoInstance.state.habilitarImpressao()}">
+						<g:link action="gerarPDF" params="[id_pag: pagamentoInstance.id]" class="btn btn-info">
+							<i class="glyphicon glyphicon-download-alt padr5"></i>Salvar Comprovante
+						</g:link>
+					</g:if>
 				</fieldset>
 			</g:form>
 		</div>
-	<g:render template="/layouts/cancelModal" model="[item: item]"/>
+		<g:render template="/layouts/cancelModal" model="[item: item]"/>
 	</body>
 </html>

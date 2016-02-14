@@ -63,7 +63,7 @@
 		<g:message code="cliente.dataNascimento.label" default="Data Nascimento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-6">
+	<div class="col-sm-9">
 		<g:datePicker name="dataNascimento" precision="day"  value="${clienteInstance?.dataNascimento}"  />
 
 		<g:hasErrors bean="${clienteInstance}" field="dataNascimento">
