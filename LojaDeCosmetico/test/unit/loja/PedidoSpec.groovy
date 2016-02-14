@@ -6,7 +6,7 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Pedido)
+/*@TestFor(Pedido)
 class PedidoSpec extends Specification {
 
     def setup() {
@@ -17,4 +17,4 @@ class PedidoSpec extends Specification {
 
     void "test something"() {
     }
-}
+}*/

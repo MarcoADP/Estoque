@@ -12,11 +12,14 @@ class PagamentoSpec extends GrailsUnitTestCase {
 
     void testeValidacao() {
         mockDomain Pagamento
+        mockDomain Cliente
 
-        def pagamento1 = new Pagamento(id_venda: 1, dataVencimento: new Date(), dateCreated: new Date(), valorTotal: -10, tipoPagamento: "Boleto")
+        Cliente cliente = new Cliente(nome: "Joao")
+
+        def pagamento1 = new Pagamento(id_venda: 1, cliente: cliente, dataVencimento: new Date(), dateCreated: new Date(), valorTotal: -10, tipoPagamento: "Boleto")
         assertFalse pagamento1.validate()
 
-        def pagamento2 = new Pagamento(id_venda: 1, dataVencimento: new Date(), dateCreated: new Date(), valorTotal: 10.5, tipoPagamento: "Dinheiro")
+        def pagamento2 = new Pagamento(id_venda: 1, cliente: cliente, dataVencimento: new Date().plus(7), dateCreated: new Date(), valorTotal: 10.5, tipoPagamento: "Dinheiro")
         assertTrue pagamento2.validate()
     }
 
@@ -29,14 +32,14 @@ class PagamentoSpec extends GrailsUnitTestCase {
         Cliente cliente = new Cliente(nome: "Joao")
 
 
-        Pagamento pagamento = new Pagamento(id_venda: venda.id, dateCreated: new Date(), dataVencimento: new Date(), cliente: cliente, tipoPagamento: "Dinheiro")
+        Pagamento pagamento = new Pagamento(id_venda: venda.id, dateCreated: new Date(), dataVencimento: new Date().plus(7), cliente: cliente, tipoPagamento: "Dinheiro")
 
         assertTrue pagamento.isEmAberto()
 
-        double valorTotal_fail = -10.0
+        float valorTotal_fail = -10.0
         assertFalse pagamento.efetuarPagamento(venda, valorTotal_fail)
 
-        double valorTotal_ok = 5.5
+        float valorTotal_ok = 5.5
         assertTrue pagamento.efetuarPagamento(venda, valorTotal_ok)
 
         assertTrue pagamento.isPago()

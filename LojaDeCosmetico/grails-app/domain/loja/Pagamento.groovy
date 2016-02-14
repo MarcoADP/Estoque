@@ -71,12 +71,14 @@ class Pagamento {
         if (venda == null){
             return false
         }
+        venda.validate()
         if (venda.hasErrors()){
             return false
         }
         if (valor_total < 0.0){
             return false;
         }
+
         venda.setFinalizada()
         venda.setPagamento(this)
         venda.save flush: true
