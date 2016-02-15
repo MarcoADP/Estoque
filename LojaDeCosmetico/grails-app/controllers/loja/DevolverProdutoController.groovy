@@ -17,9 +17,57 @@ class DevolverProdutoController {
         params.max = Math.min(max ?: 10, 100)
 
         def results = Venda.list(params)
+        /*if (params.dataEmissaoInicio != null){
+            params.dataEmissaoFim = params.dataEmissaoFim.plus(1)
+            def criteria = Pagamento.createCriteria()
+            results = criteria.list {
+                cliente {
+                    like ("nome", "%"+params.cliente+"%")
+                }
+                between("dateCreated", params.dataEmissaoInicio, params.dataEmissaoFim)
+                between("dataVencimento", params.dataVencimentoInicio, params.dataVencimentoFim)
+
+                if (params.tipoPagamento != "Todos"){
+                    eq("tipoPagamento", params.tipoPagamento)
+                }
+                if (params.situacao != "Todos"){
+                    params.situacao = PagamentoState.valueOf(params.situacao)
+                    eq("state", params.situacao)
+                }
+            }
+        }*/
+
+
         if (params.dataTransacaoInicio != null){
-            results = Venda.findAllByDataTransacaoBetween(params.dataTransacaoInicio, params.dataTransacaoFim)
+            //results = Venda.findAllByDataTransacaoBetween(params.dataTransacaoInicio, params.dataTransacaoFim)
+            params.dataTransacaoFim = params.dataTransacaoFim.plus(1)
+            def criteria = Venda.createCriteria()
+            System.out.println("asduahdshidsahfuafhifhiuuifdafdui")
+            results = criteria.list {
+                System.out.println("Dentro de results")
+                pessoa {
+                    System.out.println("dentro de pessoa")
+                    like("nome", "%" + params.pessoa + "%")
+                }
+                between("dataTransacao", params.dataTransacaoInicio, params.dataTransacaoFim)
+            }
         }
+
+        /*if(params.cliente != null){
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            results = criteria.list {
+                System.out.println("Dentro de results")
+                pessoa {
+                    System.out.println("dentro de pessoa")
+                    like("nome", "%" + params.pessoa + "%")
+                }
+                //Venda.findAllByPessoa
+            }
+        }*/
+
 
         if(results.size() == 0){
             request.message_info = message(code: 'default.search.notfound.message', default: 'Nada encontrado')
@@ -27,7 +75,7 @@ class DevolverProdutoController {
 
         respond results, model:[vendaInstanceCount: Venda.count()]
     }
-
+    //=====================================
     def show(Venda vendaInstance) {
         respond vendaInstance
     }
