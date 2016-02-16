@@ -12,7 +12,8 @@
 <div class="page-header" role="navigation">
     <a class="btn btn-info" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
     <g:link class="btn btn-info" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
-    <g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+    <!--<g:link class="btn btn-info" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+    -->
 </div>
 
 <div class="container-fluid">
@@ -25,6 +26,12 @@
                 <g:form url="[resource:fornecedorInstance, action:'index']" method="GET"
                         class="well well-lg">
                     <div class="row">
+                        <div class="form-group form-group-data col-xs-6 col-sm-5 col-md-4 col-lg-6 ${hasErrors(bean: pagamentoInstance, field: 'cliente', 'error')} required">
+                            <label for="pessoa">
+                                <g:message code="venda.pessoa.search.label" default="Nome do cliente" />
+                            </label><br/>
+                            <g:field type="search" class="form-control" name="pessoa" value="${params.pessoa}"/>
+                        </div>
                         <div class="form-group form-group-data col-xs-12 col-sm-12 col-md-12 col-lg-12 ${hasErrors(bean: vendaInstance, field: 'dataTransacao', 'error')} required">
                             <label for="dataTransacao">
                                 <g:message code="venda.dataTransacao.label" default="Data Transacao entre" />

@@ -17,9 +17,45 @@ class DevolverProdutoController {
         params.max = Math.min(max ?: 10, 100)
 
         def results = Venda.list(params)
+
+
         if (params.dataTransacaoInicio != null){
-            results = Venda.findAllByDataTransacaoBetween(params.dataTransacaoInicio, params.dataTransacaoFim)
+            //results = Venda.findAllByDataTransacaoBetween(params.dataTransacaoInicio, params.dataTransacaoFim)
+            params.dataTransacaoFim = params.dataTransacaoFim.plus(1)
+            def criteria = Venda.createCriteria()
+            results = criteria.list {
+                pessoa {
+                    like("nome", "%" + params.pessoa + "%")
+                }
+
+                between("dataTransacao", params.dataTransacaoInicio, params.dataTransacaoFim)
+
+                eq("status", Venda.Status.EM_ABERTO)
+
+            }
         }
+        if (params.dataTransacaoInicio == null){
+            def criteria = Venda.createCriteria()
+            results = criteria.list {
+                eq("status", Venda.Status.EM_ABERTO)
+            }
+        }
+
+        /*if(params.cliente != null){
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            System.out.println("AUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHFAUSDHDHASHUDAHUDUAHDUHDAHFDGBAFGDIFBDIFHF")
+            results = criteria.list {
+                System.out.println("Dentro de results")
+                pessoa {
+                    System.out.println("dentro de pessoa")
+                    like("nome", "%" + params.pessoa + "%")
+                }
+                //Venda.findAllByPessoa
+            }
+        }*/
+
 
         if(results.size() == 0){
             request.message_info = message(code: 'default.search.notfound.message', default: 'Nada encontrado')
@@ -27,7 +63,7 @@ class DevolverProdutoController {
 
         respond results, model:[vendaInstanceCount: Venda.count()]
     }
-
+    //=====================================
     def show(Venda vendaInstance) {
         respond vendaInstance
     }
