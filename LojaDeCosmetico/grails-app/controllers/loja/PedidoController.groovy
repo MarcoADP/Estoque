@@ -13,7 +13,8 @@ class PedidoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: Pedido.count(), 100)
-        respond Pedido.list(params), model:[pedidoInstanceCount: Pedido.count()]
+        def results = Pedido.findAllByCanceladoNotEqual(true)
+        respond results, model:[pedidoInstanceCount: Pedido.count()]
     }
 
     def show(Pedido pedidoInstance) {
@@ -36,6 +37,9 @@ class PedidoController {
             return
         }
 
+        def produto = pedidoInstance.produto
+        produto.setQuantidade(produto.quantidade+pedidoInstance.quantidade)
+        produto.save flush:true
         pedidoInstance.save flush:true
 
         request.withFormat {
@@ -63,6 +67,9 @@ class PedidoController {
             return
         }
 
+        def produto = pedidoInstance.produto
+        produto.setQuantidade(produto.quantidade+pedidoInstance.quantidade)
+        produto.save flush:true
         pedidoInstance.save flush:true
 
         request.withFormat {
@@ -71,6 +78,26 @@ class PedidoController {
                 redirect pedidoInstance
             }
             '*'{ respond pedidoInstance, [status: OK] }
+        }
+    }
+
+    @Transactional
+    def cancel(Pedido pedidoInstance) {
+
+        if (pedidoInstance == null) {
+            notFound()
+            return
+        }
+
+        pedidoInstance.cancelado = true
+        pedidoInstance.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pedido.label', default: 'Pedido'), pedidoInstance.id])
+                redirect action: "index", method: "GET"
+            }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
