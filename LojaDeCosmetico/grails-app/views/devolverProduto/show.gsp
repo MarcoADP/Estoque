@@ -168,12 +168,13 @@
                                 <g:link class="btn btn-lg btn-primary"  action="edit" resource="${vendaInstance}">
                                     <g:message code="default.button.edit.label" default="Edit" />
                                 </g:link>
-                                <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-finalizar-venda">
+                                <!--<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal-finalizar-venda">
                                     Finalizar
-                                </button>
-                                <g:actionSubmit class="btn btn-lg btn-danger" action="cancel" 
+                                </button>-->
+                                <!-- <g:actionSubmit class="btn btn-lg btn-danger" action="cancel"
                                 value="${message(code: 'default.button.delete.label', default: 'Delete')}"
                                 onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                -->
                             </fieldset>
                         </g:if>
                     </g:form>
