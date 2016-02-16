@@ -47,7 +47,7 @@
             <sec:ifAllGranted roles="ROLE_GERENTE">
                 <li class="nav-sidebar divider"></li>
                 <li class="${controllerName == 'fornecedor' ? 'active' : ''}"><g:link controller="fornecedor"><span class="glyphicon glyphicon-globe"></span>Fornecedor</g:link></li>
-                <li class="${controllerName == 'pedido' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</a></li>
+                <li class="${controllerName == 'pedido' ? 'active' : ''}"><g:link controller="pedido"><span class="glyphicon glyphicon-shopping-cart"></span>Compras</g:link></li>
                 <!--<li class="${controllerName == 'retornarCompra' ? 'active' : ''}"><a href=""><span class="glyphicon glyphicon-new-window"></span>Retornar compra</a></li>-->
             </sec:ifAllGranted>
             <li class="nav-sidebar divider"></li>

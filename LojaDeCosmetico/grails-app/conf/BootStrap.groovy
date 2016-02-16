@@ -1,4 +1,5 @@
 import loja.*
+import util.ObserverService
 
 class BootStrap {
 
@@ -23,6 +24,8 @@ class BootStrap {
                 UsuarioPapel.create(funcionario, papelFuncionario, true)
             }
         }
+
+        ObserverService.cadastrar(pagamento: Pagamento, produto: Produto)
 
     }
     def destroy = {

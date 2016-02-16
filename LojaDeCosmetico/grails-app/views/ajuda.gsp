@@ -9,6 +9,7 @@
         <div class="bs-callout bs-callout-success">
             <h1 class="titulo-main text-center">Ajuda</h1>
             <h2>F.A.Q <small> - Perguntas Frequentes</small></h2>
+            <br>
             <dl>
                 <dt>Qual as funcionalidades empregadas?</dt>
                 <dd>O Sistema consiste nas funcionalidade de <g:link controller="produto"><mark>Estoque</mark></g:link>, <g:link controller="venda"><mark>Venda</mark></g:link>, <g:link controller="pagamento"><mark>Pagamento</mark></g:link>, <g:link controller="devolverProduto"><mark>Devolução de Produtos</mark></g:link> e Compras. Além de contar com gerenciamento de <g:link controller="usuario"><mark>Usuario</mark></g:link>, <g:link controller="fornecedor"><mark>Fornecedor</mark></g:link> e <g:link controller="cliente"><mark>Cliente</mark></g:link>.</dd>
@@ -159,15 +160,6 @@
                 <dd>Clicar no link <g:link controller="compra" target="_blank"><mark>Compras</mark></g:link> do menu lateral, clicar na compra desejada e por fim no botão <mark>Remover</mark> na parte inferior da tela.</dd>
                 <br>
 
-
-
-
-
-
-
-
-                <dt>Outra pergunta</dt>
-                <dd>Outra resposta</dd>
             </dl>
 
 

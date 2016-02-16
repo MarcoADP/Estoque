@@ -4,6 +4,7 @@
 		<meta name="layout" content="main"/>
 		<title>Loja de Cosmético</title>
 		<%@ page import="loja.*" %>
+		<g:set var="observer" bean="observerService"/>
 	</head>
 	<body>
 	<div id="page-body" role="main">
@@ -123,7 +124,15 @@
 					<div class="panel-heading"><h3 class="panel-title">Avisos</h3></div>
 					<div class="panel-body">
 						<div class="alert alert-warning">
-							<li>Nenhum aviso.</li>
+							<g:if test="${observer.msgPagAVencer()}">
+								<li>${observer.msgPagAVencer()}<g:link controller="pagamento" class="alert-link"> Ir para pagamentos.</g:link></li>
+							</g:if>
+							<g:if test="${observer.msgProdutoSemEstoque()}">
+								<li>${observer.msgProdutoSemEstoque()}<g:link controller="produto" class="alert-link"> Ir para estoque.</g:link></li>
+							</g:if>
+							<g:if test="${!observer.msgProdutoSemEstoque() && !observer.msgPagAVencer()}">
+								<li>Nenhum aviso.</li>
+							</g:if>
 						</div>
 					</div>
 				</div>
