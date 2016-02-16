@@ -8,7 +8,7 @@
 		<g:set var="entityName" value="${message(code: 'pedido.label', default: 'Pedido')}" />
 		<g:set var="val" value="${fieldValue(bean: pedidoInstance, field: "valor")}"/>
 		<g:set var="quant" value="${fieldValue(bean: pedidoInstance, field: "quantidade")}"/>
-		<g:set var="total" value="${Float.parseFloat(val.toString()) * Float.parseFloat(quant.toString())}"/>
+		<g:set var="total" value="${pedidoInstance.valor * Float.parseFloat(quant.toString())}"/>
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>

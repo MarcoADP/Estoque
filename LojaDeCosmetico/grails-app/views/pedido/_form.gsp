@@ -9,7 +9,7 @@
     </label>
 
     <div class="col-sm-6">
-        <g:select id="fornecedor" name="fornecedor.id" class="form-control" from="${loja.Fornecedor.list()}" optionKey="id" required="" value="${pedidoInstance?.fornecedor?.id}"/>
+        <g:select id="fornecedor" name="fornecedor.id" class="form-control" from="${loja.Fornecedor.findAllByCancelado(false)}" optionKey="id" required="" value="${pedidoInstance?.fornecedor?.id}"/>
 
         <g:hasErrors bean="${pedidoInstance}" field="fornecedor">
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
