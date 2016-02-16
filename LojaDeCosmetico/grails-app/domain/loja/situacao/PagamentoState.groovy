@@ -16,6 +16,7 @@ enum PagamentoState {
 
         @Override
         PagamentoState pagar(float valor, Pagamento pagamento) {
+            pagamento.setValorTotal(valor)
             return PagamentoState.PAGO
         }
 
@@ -60,6 +61,7 @@ enum PagamentoState {
 
         @Override
         PagamentoState pagar(float valor, Pagamento pagamento) {
+            pagamento.setValorTotal(valor)
             return PagamentoState.PAGO
         }
 

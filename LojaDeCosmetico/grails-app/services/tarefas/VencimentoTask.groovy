@@ -15,18 +15,19 @@ class VencimentoTask {
             def listaPagamento = Pagamento.list()
             Date hoje = new Date().clearTime()
             for (Pagamento pagamento: listaPagamento){
-                def dif = TimeCategory.minus(hoje, pagamento.dataVencimento)
-                //println dif
+                def dif = TimeCategory.minus(pagamento.dataVencimento, hoje)
+                println pagamento.dataVencimento
+                println dif
 
-                if (pagamento.isAVencer() && (cont >= 5 || pagamento.dataVencimento.compareTo(hoje.next()) >= 0)){
+                if (pagamento.isAVencer() && (cont >= 10 || pagamento.dataVencimento.compareTo(hoje.next()) >= 0)){
                     //println "VENCEU: "+pagamento
                     pagamento.setVencido()
                     pagamento.save(flush: true, failOnError: true, validate: false)
                 }
-                else if (pagamento.isEmAberto() && dif.days <= 7){
+                else if (pagamento.isEmAberto() && (cont >= 5 && dif.days <= 7)){
                     //println "A VENCER: "+pagamento
                     pagamento.setAVencer()
-                    println pagamento.save(flush: true, failOnError: true, validate: false)
+                    pagamento.save(flush: true, failOnError: true, validate: false)
                 }
             }
             cont++

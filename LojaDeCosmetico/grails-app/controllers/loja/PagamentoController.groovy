@@ -80,6 +80,7 @@ class PagamentoController {
         venda.setFinalizada()
         venda.pagamento = pagamentoInstance
         venda.save flush: true
+        //pagamentoInstance.efetuarPagamento(venda, pagamentoInstance.valorTotal)
 
         request.withFormat {
             form multipartForm {
@@ -87,6 +88,32 @@ class PagamentoController {
                 redirect pagamentoInstance
             }
             '*' { respond pagamentoInstance, [status: CREATED] }
+        }
+    }
+
+    @Transactional
+    def finalizar(Pagamento pagamentoInstance) {
+        if (pagamentoInstance == null) {
+            notFound()
+            return
+        }
+
+        if (pagamentoInstance.hasErrors()) {
+            respond pagamentoInstance.errors, view: 'show'
+            return
+        }
+
+        pagamentoInstance.setPago()
+        pagamentoInstance.save flush: true
+        //pagamentoInstance.efetuarPagamento()
+
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'pagamento.finalizar.message', args: [message(code: 'Pagamento.label', default: 'Pagamento'), pagamentoInstance.id])
+                redirect pagamentoInstance
+            }
+            '*' { respond pagamentoInstance, [status: OK] }
         }
     }
 

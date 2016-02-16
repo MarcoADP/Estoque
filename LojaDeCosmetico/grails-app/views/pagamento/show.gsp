@@ -134,9 +134,16 @@
 			<hr>
 			<g:form url="[resource:pagamentoInstance, action:'cancel']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link class="btn btn-primary" action="edit" resource="${pagamentoInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:if test="${pagamentoInstance.isEmAberto()}">
-						<a href="#CancelModal" class="btn btn-danger" data-toggle="modal"><g:message code="pagamento.button.cancelar" default="Cancelar" /></a>
+					<g:link class="btn btn-primary" action="edit" resource="${pagamentoInstance}">
+						%{--<i class="glyphicon glyphicon-edit"></i> <g:message code="default.button.edit.label" default="Edit" />--}%
+					</g:link>
+					<g:if test="${pagamentoInstance.isEmAberto() || pagamentoInstance.isAVencer()}">
+						<a href="#CancelModal" class="btn btn-danger" data-toggle="modal">
+							%{--<i class="glyphicon glyphicon-ban-circle"></i> <g:message code="pagamento.button.cancelar" default="Cancelar" />--}%
+						</a>
+						<a href="#ConfirmModal" class="btn btn-success" data-toggle="modal">
+							%{--<i class="glyphicon glyphicon-ok-circle"></i> <g:message code="pagamento.button.finalizar.label" default="Efetuar Pagamento" />--}%
+						</a>
 					</g:if>
 
 					<g:if test="${pagamentoInstance.state.habilitarImpressao()}">
@@ -148,5 +155,6 @@
 			</g:form>
 		</div>
 		<g:render template="/layouts/cancelModal" model="[item: item]"/>
+		<g:render template="/layouts/confirmModal" model="[item: item]"/>
 	</body>
 </html>

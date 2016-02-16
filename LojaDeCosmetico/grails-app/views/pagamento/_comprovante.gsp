@@ -61,6 +61,11 @@
     </dl>
 
     <dl class="dll-horizontal">
+        <dt>Data de emissão</dt>
+        <dd><g:formatDate date="${new Date()}" /></dd>
+    </dl>
+
+    <dl class="dll-horizontal">
         <dt>Cliente</dt>
         <dd>${pagamento?.cliente?.encodeAsHTML()}</dd>
     </dl>
@@ -71,7 +76,12 @@
     </dl>
 
     <dl class="dll-horizontal">
-        <dt>Data de emissão</dt>
+        <dt>Tipo de Pagamento:</dt>
+        <dd>${pagamento?.tipoPagamento}</dd>
+    </dl>
+
+    <dl class="dll-horizontal">
+        <dt>Data do pagamento</dt>
         <dd><g:formatDate date="${pagamento?.dateCreated}" /></dd>
     </dl>
 
@@ -80,3 +90,4 @@
 
 </body>
 </html>
+
