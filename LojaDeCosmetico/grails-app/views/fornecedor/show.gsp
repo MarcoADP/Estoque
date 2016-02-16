@@ -72,10 +72,10 @@
 				<g:form url="[resource:fornecedorInstance, action:'delete']" method="DELETE">
 					<fieldset class="buttons">
 						<g:link class="btn btn-primary" action="edit" resource="${fornecedorInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<a href="#DeleteModal" class="btn btn-danger" data-toggle="modal"><g:message code="default.button.delete.label" default="Delete" /></a>
+						<a href="#CancelModal" class="btn btn-danger" data-toggle="modal"><g:message code="default.button.cancel.label" default="Cancelar" /></a>
 					</fieldset>
 				</g:form>
 			</div>
-		<g:render template="/layouts/deleteModal" model="[item: item]"/>
+		<g:render template="/layouts/cancelModal" model="[item: item]"/>
 		</body>
 </html>

@@ -1,9 +1,11 @@
 package loja
 
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+@Secured(['ROLE_GERENTE'])
 @Transactional(readOnly = true)
 class PedidoController {
 
@@ -11,7 +13,7 @@ class PedidoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: Pedido.count(), 100)
-        respond Pedido.list(params), model: [pedidoInstanceCount: Pedido.count()]
+        respond Pedido.list(params), model:[pedidoInstanceCount: Pedido.count()]
     }
 
     def show(Pedido pedidoInstance) {
@@ -30,11 +32,11 @@ class PedidoController {
         }
 
         if (pedidoInstance.hasErrors()) {
-            respond pedidoInstance.errors, view: 'create'
+            respond pedidoInstance.errors, view:'create'
             return
         }
 
-        pedidoInstance.save flush: true
+        pedidoInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -57,18 +59,18 @@ class PedidoController {
         }
 
         if (pedidoInstance.hasErrors()) {
-            respond pedidoInstance.errors, view: 'edit'
+            respond pedidoInstance.errors, view:'edit'
             return
         }
 
-        pedidoInstance.save flush: true
+        pedidoInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Pedido.label', default: 'Pedido'), pedidoInstance.id])
                 redirect pedidoInstance
             }
-            '*' { respond pedidoInstance, [status: OK] }
+            '*'{ respond pedidoInstance, [status: OK] }
         }
     }
 
@@ -80,14 +82,14 @@ class PedidoController {
             return
         }
 
-        pedidoInstance.delete flush: true
+        pedidoInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Pedido.label', default: 'Pedido'), pedidoInstance.id])
-                redirect action: "index", method: "GET"
+                redirect action:"index", method:"GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -97,7 +99,7 @@ class PedidoController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'pedido.label', default: 'Pedido'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

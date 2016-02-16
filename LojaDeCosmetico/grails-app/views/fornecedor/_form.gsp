@@ -1,6 +1,17 @@
 <%@ page import="loja.Fornecedor" %>
 
-
+<div class="form-group ${hasErrors(bean: fornecedorInstance, field: 'codFor', 'has-error has-feedback')} required">
+	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="codFor">
+		<g:message code="fornecedor.codFor.label" default="Cod For" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-6">
+		<g:field class="form-control" type="number" name="codFor" min="0" required="" value="${fornecedorInstance?.codFor}"/>
+		<g:hasErrors bean="${fornecedorInstance}" field="codFor">
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		</g:hasErrors>
+	</div>
+</div>
 
 <div class="form-group ${hasErrors(bean: fornecedorInstance, field: 'nome', 'has-error has-feedback')} required">
 	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="nome">
@@ -22,23 +33,9 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-6">
-		<g:textField name="cnpj" class="form-control" required="" value="${fornecedorInstance?.cnpj}"/>
+		<g:textField id="cnpj" name="cnpj" class="form-control" required="" value="${fornecedorInstance?.cnpj}"/>
 
 		<g:hasErrors bean="${fornecedorInstance}" field="cnpj">
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-		</g:hasErrors>
-	</div>
-</div>
-
-<div class="form-group ${hasErrors(bean: fornecedorInstance, field: 'codFor', 'has-error has-feedback')} required">
-	<label class="col-sm-3 col-md-2 col-lg-2 control-label" for="codFor">
-		<g:message code="fornecedor.codFor.label" default="Cod For" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-6">
-		<g:textField name="codFor" class="form-control" required="" value="${fornecedorInstance?.codFor}"/>
-
-		<g:hasErrors bean="${fornecedorInstance}" field="codFor">
 			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
 		</g:hasErrors>
 	</div>
@@ -57,4 +54,10 @@
 		</g:hasErrors>
 	</div>
 </div>
+
+<script type='text/javascript'>
+	jQuery(function($){
+		$("#cnpj").mask("99.999.999/9999-99");
+	});
+</script>
 

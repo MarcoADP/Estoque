@@ -66,9 +66,9 @@
 					
 						<th><g:message code="pedido.valorTotal.label" default="Valor Total" /></th>
 					
-						<th><g:message code="pedido.pagamento.label" default="Pagamento" /></th>
+						<th><g:message code="pedido.fornecedor.label" default="Fornecedor" /></th>
 					
-						<th><g:message code="pedido.quantidadeTotalProdutos.label" default="Quantidade Total Produtos" /></th>
+						<th><g:message code="pedido.produto.label" default="Produto" /></th>
 					
 					</tr>
 				</thead>
@@ -84,9 +84,9 @@
 					
 						<td>${fieldValue(bean: pedidoInstance, field: "valorTotal")}</td>
 					
-						<td><g:link controller="pagamento" action="show" id="${pedidoInstance?.pagamento?.id}">${fieldValue(bean: pedidoInstance, field: "pagamento")}</g:link></td>
+						<td><g:link controller="fornecedor" action="show" id="${pedidoInstance?.fornecedor?.id}">${fieldValue(bean: pedidoInstance, field: "fornecedor")}</g:link></td>
 					
-						<td>${fieldValue(bean: pedidoInstance, field: "quantidadeTotalProdutos")}</td>
+						<td><g:link controller="produto" action="show" id="${pedidoInstance?.produto?.id}">${fieldValue(bean: pedidoInstance, field: "produto")}</g:link></td>
 					
 					</tr>
 				</g:each>
