@@ -6,6 +6,39 @@
         <meta name="layout" content="main">
         <g:set var="entityName" value="${message(code: 'venda.label', default: 'Venda')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <asset:javascript src="datatables.min.js"/>
+        <asset:stylesheet src="datatables.min.css"/>
+        <g:javascript>
+            $(document).ready(function() {
+                $('#data-table').DataTable({
+                    "language": {
+                        "sEmptyTable": "Nenhum registro encontrado",
+                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ".",
+                        "sLengthMenu": "_MENU_ resultados por página",
+                        "sLoadingRecords": "Carregando...",
+                        "sProcessing": "Processando...",
+                        "sZeroRecords": "Nenhum registro encontrado",
+                        "sSearch": "Pesquisar",
+                        "oPaginate": {
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior",
+                            "sFirst": "Primeiro",
+                            "sLast": "Último"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Ordenar colunas de forma ascendente",
+                            "sSortDescending": ": Ordenar colunas de forma descendente"
+                        }
+                    }
+
+
+                } );
+            } );
+        </g:javascript>
     </head>
     <body>
 
@@ -51,25 +84,25 @@
                             </div>
                         </g:if>
 
-                        <table class="table table-hover table-striped table-responsive">
+                        <table id="data-table" class="table table-bordered table-hover table-striped table-responsive">
                             <thead>
                                 <tr>
 
-                                    <th><g:message code="venda.pessoa.label" default="Cliente" /></th>
+                                        <th><g:message code="venda.pessoa.label" default="Cliente" /></th>
 
-                                        <g:sortableColumn property="dataTransacao" title="${message(code: 'venda.dataTransacao.label', default: 'Data Transacao')}" />
+                                        <th>${message(code: 'venda.dataTransacao.label', default: 'Data Transacao')}</th>
 
-                                        <g:sortableColumn property="quantidadeTotal" title="${message(code: 'venda.quantidadeTotal.label', default: 'Quantidade Total')}" />
+                                        <th>${message(code: 'venda.quantidadeTotal.label', default: 'Quantidade Total')}</th>
 
-                                        <g:sortableColumn property="valorTotal" title="${message(code: 'venda.valorTotal.label', default: 'Valor Total')}" />
+                                        <th>${message(code: 'venda.valorTotal.label', default: 'Valor Total')}</th>
 
-                                        <g:sortableColumn property="status" title="${message(code: 'venda.status.label', default: 'Status')}" />
+                                        <th>${message(code: 'venda.status.label', default: 'Status')}</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <g:each in="${vendaInstanceList}" status="i" var="vendaInstance">
-                                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'} clickable-row">
 
                                         <td><g:link action="show" id="${vendaInstance.id}">
                                                 ${fieldValue(bean: vendaInstance, field: "pessoa")}
