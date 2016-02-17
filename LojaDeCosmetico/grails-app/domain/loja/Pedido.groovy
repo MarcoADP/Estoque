@@ -21,4 +21,21 @@ class Pedido {
         dateCreated column: 'data_pedido'
     }
 
+    boolean fechaPedido(Produto produto, float valor, int quantidade){
+        if (quantidade < 0){
+            return false
+        }
+        if (valor < 0){
+            return false
+        }
+        produto.validate()
+        if (produto.hasErrors()){
+            return false
+        }
+        this.valor = valor
+        this.quantidade = quantidade
+        this.produto = produto
+        return true
+    }
+
 }
